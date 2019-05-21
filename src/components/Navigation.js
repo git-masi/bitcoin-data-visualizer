@@ -16,6 +16,12 @@ const Navigation = () => {
           <IndexLinkContainer to="/about">
             <Nav.Link>About</Nav.Link>
           </IndexLinkContainer>
+          <IndexLinkContainer to="/invest">
+            <Nav.Link>Invest</Nav.Link>
+          </IndexLinkContainer>
+          <IndexLinkContainer to="/price-index">
+            <Nav.Link>Price Index</Nav.Link>
+          </IndexLinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
