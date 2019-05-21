@@ -6,7 +6,7 @@ import logo from '../assets/images/bitcoin-logo.svg';
 
 const Navigation = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
       <Navbar.Brand>
         <img
           alt="Bitcoin Viz Logo"

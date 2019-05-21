@@ -1,0 +1,31 @@
+.pageWrapper {
+  height: 100%;
+}
+
+.jumbotron {
+  padding: 2rem 2rem;
+  border-radius: 20px;
+}
+
+.coin {
+  height: 150px;
+  width: 150px;
+  background: url('../assets/images/coin.svg') no-repeat center center/cover;
+}
+
+h1 {
+  display: inline-block;
+}
+
+.tickerSymbol {
+  margin-right: 20px;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, .4)
+}
+
+.news {
+  min-height: 20rem;
+  background: white;
+  border: 1px solid gainsboro;
+  border-radius: .2rem;
+}

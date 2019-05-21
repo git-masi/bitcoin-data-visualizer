@@ -1,0 +1,12 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: url('./assets/images/bitcoin-viz-bg-protruding-squares.svg');
+}
+
+#root {
+  height: 100%;
+}
