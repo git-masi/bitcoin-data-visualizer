@@ -2,11 +2,21 @@ import React from 'react';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { IndexLinkContainer } from "react-router-bootstrap";
+import logo from '../assets/images/bitcoin-logo.svg';
 
 const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand>BitcoinViz</Navbar.Brand>
+      <Navbar.Brand>
+        <img
+          alt="Bitcoin Viz Logo"
+          src={logo}
+          width="30"
+          height="30"
+          className="d-inline-block align-top mr-3"
+        />
+        { 'BitcoinViz' }
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
