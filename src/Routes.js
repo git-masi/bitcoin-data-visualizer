@@ -6,6 +6,7 @@ const Routes = props => {
   return (
     <Switch>
       <Route exact path="/" render={routeProps => <Home {...routeProps}/>}/>
+      <Route exact path="/about" render={routeProps => <h1>this is the about page</h1>}/>
     </Switch>
   )
 }
