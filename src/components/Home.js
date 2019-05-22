@@ -10,8 +10,26 @@ import Button from 'react-bootstrap/Button';
 import styles from './Home.module.css';
   
 class Home extends Component {
+  state = {
+    curBitcoinRateUSD: null,
+    dataLoaded: false
+  }
+
+  componentDidMount() {
+    async function getBitcoinRate() {
+      const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
+      let data = await response.json();
+      return data;
+    }
+
+    getBitcoinRate()
+      .then(data => data.bpi.USD.rate_float.toFixed(2))
+      .then(rate => this.setState({curBitcoinRateUSD: rate, dataLoaded: true}))
+      .catch(err => console.log(err));
+  }
+
   render() {
-    const price = '7288.62';
+    const { curBitcoinRateUSD, dataLoaded } = this.state;
 
     return (
       <div className={styles.pageWrapper}>
@@ -24,7 +42,7 @@ class Home extends Component {
                 <div className={styles.coin}></div>
               </Col>
               <Col md="auto" className="my-auto">
-                <h1>Bitcoin Price <span className={styles.tickerSymbol}>(BTC)</span> <span>${price}</span></h1>
+                <h1>Bitcoin Price <span className={styles.tickerSymbol}>(BTC)</span> <span>${curBitcoinRateUSD}</span></h1>
               </Col>
             </Row>
           </Container>
