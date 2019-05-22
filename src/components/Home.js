@@ -27,6 +27,16 @@ class Home extends Component {
       .then(data => data.bpi.USD.rate_float.toFixed(2))
       .then(rate => this.setState({curBitcoinRateUSD: rate, dataLoaded: true}))
       .catch(err => console.log(err));
+
+    // get images for news async, may or may not need depending on newsAPI
+    // async function getImage(keyword = 'news') {
+    //   const response = await fetch(`https://source.unsplash.com/1600x900/?${keyword}`)
+    //   let data = await response;
+    //   return data;
+    // }
+
+    // getImage()
+    //   .then(data => console.log(data.url));
   }
 
   render() {
@@ -70,7 +80,6 @@ class Home extends Component {
             </Card>
           </Col>
           <Col md={8}>
-            {/* <div className={styles.news}></div> */}
             <Carousel>
               <Carousel.Item>
                 <img
