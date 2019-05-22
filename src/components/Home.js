@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner'
 import styles from './Home.module.css';
   
 class Home extends Component {
@@ -31,10 +32,8 @@ class Home extends Component {
   render() {
     const { curBitcoinRateUSD, dataLoaded } = this.state;
 
-    return (
-      <div className={styles.pageWrapper}>
-        <Navigation/>
-        <Container className="mb-4">
+    const display = dataLoaded ?
+      <Container className="mb-4">
         <Jumbotron fluid className={`mt-4 ${styles.jumbotron}`}>
           <Container>
             <Row className="justify-content-md-center">
@@ -111,7 +110,23 @@ class Home extends Component {
             </Carousel>
           </Col>
         </Row>
-        </Container>
+      </Container> :
+      <Container>
+        <Row className="justify-content-center mt-5">
+          <Col xs="auto">
+            <div className={styles.spinnerContainer}>
+              <Spinner className={styles.spinner} animation="border" variant="primary" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+    return (
+      <div className={styles.pageWrapper}>
+        <Navigation/>
+        { display }
       </div>
     )
   }
