@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Navigation from './Navigation';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron'
@@ -137,10 +137,10 @@ class Home extends Component {
       </Container>
 
     return (
-      <div className={styles.pageWrapper}>
+      <Fragment>
         <Navigation/>
-        { display }
-      </div>
+        { display }   
+      </Fragment>
     )
   }
 }
