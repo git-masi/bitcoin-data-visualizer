@@ -55,6 +55,14 @@ class PriceIndex extends Component {
                 </Card.Body>
               </Card>
             </Col>
+            <Col md={8}>
+              <Card>
+                <Card.Header>Historical Bitcoin Price Data</Card.Header>
+                <Card.Body>
+                  
+                </Card.Body>
+              </Card>
+            </Col>
           </Row>
         </Container>
       </Fragment>
