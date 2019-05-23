@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import PriceIndexChart from './PriceIndexChart';
   
 class PriceIndex extends Component {
   render() {
@@ -75,7 +76,7 @@ class PriceIndex extends Component {
               <Card>
                 <Card.Header>Historical Bitcoin Price Data</Card.Header>
                 <Card.Body>
-                  
+                  <PriceIndexChart />
                 </Card.Body>
               </Card>
             </Col>
