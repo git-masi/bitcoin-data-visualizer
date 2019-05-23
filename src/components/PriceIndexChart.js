@@ -9,7 +9,7 @@ class PriceIndexChart extends Component {
   }
   
   async getPriceIndexData() {
-    const response = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-05-17&end=2019-05-23');
+    const response = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-05-01&end=2019-05-23');
     let data = await response.json();
     return data;
   }
@@ -23,14 +23,29 @@ class PriceIndexChart extends Component {
       .catch(err => console.log(err))
   }
 
+  setColorGradient = (canvas) => {
+    const width = canvas.width;
+    const height = canvas.height;
+    const ctx = canvas.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, 'rgba(254, 202, 87, .6)');
+    gradient.addColorStop(1, 'rgba(255, 107, 107, 1)');
+    return gradient;
+  } 
+
   makeChart = canvas => {
     const chartData = {
       labels: this.state.labels,
       datasets: [
         {
           label: 'bitcoin price',
-          backgroundColor: 'rgba(238, 82, 83,1.0)',
           data: this.state.data,
+          backgroundColor: this.setColorGradient(canvas),
+          pointHoverBackgroundColor: 'rgba(254, 202, 87, 1)',
+          borderColor: 'rgba(10, 189, 227, .8)',
+          borderWidth: 5,
+          borderJoinStyle: 'round',
+          lineTension: .2,
         },
       ]
     }
@@ -38,7 +53,6 @@ class PriceIndexChart extends Component {
   }
 
   render() {
-
     return (
       <div style={{position: 'relative'}}>
         <Line 
