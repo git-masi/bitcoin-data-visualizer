@@ -15,7 +15,23 @@ class PriceIndex extends Component {
         <Container className="my-4">
           <Row>
             <Col md={4}>
-              <Card border="light">
+              <Card className="mb-2">
+                <Card.Header>Exchange Currency</Card.Header>
+                <Card.Body>
+                  <Form>
+                    <Form.Group>
+                      <Form.Control as="select">
+                        <option>USD</option>
+                        <option>GBP</option>
+                        <option>EUR</option>
+                        <option>JPY</option>
+                        <option>CAD</option>
+                      </Form.Control>
+                    </Form.Group>
+                  </Form>
+                </Card.Body>
+              </Card>
+              <Card border="light" className="mb-2">
                 <Card.Header>Date Range</Card.Header>
                 <Card.Body>
                   <Form>
@@ -37,7 +53,7 @@ class PriceIndex extends Component {
                   </Form>
                 </Card.Body>
               </Card>
-              <Card border="light" className="mt-2">
+              <Card border="light">
                 <Card.Header>Fast Actions</Card.Header>
                 <Card.Body>                  
                   <Form>
