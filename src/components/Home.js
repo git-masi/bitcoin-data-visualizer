@@ -39,6 +39,10 @@ class Home extends Component {
     //   .then(data => console.log(data.url));
   }
 
+  componentWillUnmount() {
+    
+  }
+
   render() {
     const { curBitcoinRateUSD, dataLoaded } = this.state;
 
