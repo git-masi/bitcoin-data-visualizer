@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import Card from 'react-bootstrap/Card';
 import chroma from 'chroma-js';
 
   
@@ -103,14 +104,19 @@ class PriceIndexChart extends Component {
 
   render() {
     return (
-      <div style={{position: 'relative'}}>
-        <Line 
-          options={{
-            responsive: true,
-          }}
-          data={this.makeChart}
-        />
-      </div>
+      <Card>
+        <Card.Header>Historical Bitcoin Price Data</Card.Header>
+        <Card.Body style={{position: 'relative'}}>  
+          <Line 
+            options={{
+              responsive: true,
+            }}
+            data={this.makeChart}
+          />
+        </Card.Body>
+      </Card>
+      // <div style={{position: 'relative'}}>
+      // </div>
     )
   }
 }
