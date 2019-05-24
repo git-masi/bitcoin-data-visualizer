@@ -11,10 +11,17 @@ class PriceIndexChart extends Component {
   }
   
   async getPriceIndexData() {
-    const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.props.currency}&start=${this.props.start}&end=${this.props.end}`);
+    const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.props.currency}&start=${this.props.start}&end=${this.props.end}`,{
+      signal: this.controller.signal
+    });
     let data = await response.json();
     return data;
   }
+
+  // not sure what this does but it gets ride of the error
+  // throws a DOMException though
+  // I should ask about this
+  controller = new AbortController();
 
   componentDidMount() {
     this.getPriceIndexData()
@@ -23,6 +30,10 @@ class PriceIndexChart extends Component {
         data: Object.values(d.bpi)     
       }))
       .catch(err => console.log(err))
+  }
+
+  componentWillUnmount(){
+    this.controller.abort();
   }
 
   getColorStopColors = () => {
