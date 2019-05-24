@@ -11,7 +11,7 @@ class PrinceIndexForm extends Component {
     endDate: '',
   }
 
-  txtInputHandler = (e) => {
+  inputHandler = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
 
@@ -42,7 +42,7 @@ class PrinceIndexForm extends Component {
           <Card.Body>
             <Form>
               <Form.Group>
-                <Form.Control as="select">
+                <Form.Control as="select" name="currency" onChange={this.inputHandler}>
                   <option>USD</option>
                   <option>GBP</option>
                   <option>EUR</option>
@@ -66,7 +66,7 @@ class PrinceIndexForm extends Component {
                       placeholder="YYYY/MM/DD"
                       name="startDate"
                       value={this.state.startDate}
-                      onChange={this.txtInputHandler}
+                      onChange={this.inputHandler}
                     />
                   </Form.Group>
                 </Col>
@@ -78,7 +78,7 @@ class PrinceIndexForm extends Component {
                       placeholder="YYYY/MM/DD"
                       name="endDate"
                       value={this.state.endDate}
-                      onChange={this.txtInputHandler}
+                      onChange={this.inputHandler}
                     />
                   </Form.Group>
                 </Col>
@@ -93,7 +93,7 @@ class PrinceIndexForm extends Component {
             <Form>
               <Form.Group>
               <Form.Control as="select">
-                <option>Yesterday</option>
+                <option>Past 7 Days</option>
                 <option>Past 30 Days</option>
                 <option>YTD</option>
                 <option>Past Year</option>
