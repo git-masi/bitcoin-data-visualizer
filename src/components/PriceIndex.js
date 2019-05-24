@@ -7,6 +7,21 @@ import PriceIndexForm from './PriceIndexForm';
 import PriceIndexChart from './PriceIndexChart';
   
 class PriceIndex extends Component {
+  state = {
+    currency: 'USD',
+    startDate: '',
+    endDate: '',
+  }
+
+  formSubmitHandler = (obj) => {
+    this.setState({
+      currency: obj.currency,
+      startDate: obj.startDate,
+      endDate: obj.endDate,
+    })
+    console.log('hello from the form submit handler');
+  }
+
   render() {
     return (
       <Fragment>
@@ -14,7 +29,7 @@ class PriceIndex extends Component {
         <Container className="my-4">
           <Row>
             <Col md={4}>
-              <PriceIndexForm />
+              <PriceIndexForm formSubmitHandler={this.formSubmitHandler}/>
             </Col>
             <Col md={8}>
               <PriceIndexChart />

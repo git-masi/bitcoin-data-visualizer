@@ -15,6 +15,16 @@ class PrinceIndexForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  formSubmitHandler = (e) => {
+    e.preventDefault();
+    const APIReqObj = {
+      currency: this.state.currency,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+    }
+    this.props.formSubmitHandler(APIReqObj);
+  }
+
   fastActionHandler = (e) => {
     const d = new Date();
     const v = e.target.value;
@@ -95,7 +105,7 @@ class PrinceIndexForm extends Component {
         <Card border="light" className="mb-2">
           <Card.Header>Date Range</Card.Header>
           <Card.Body>
-            <Form>
+            <Form onSubmit={this.formSubmitHandler}>
               <Form.Row>
                 <Col>
                   <Form.Group>
