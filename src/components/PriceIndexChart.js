@@ -72,7 +72,7 @@ class PriceIndexChart extends Component {
   setColorGradient = (canvas) => {
     const width = canvas.clientWidth;
     const ctx = canvas.getContext('2d');
-    console.log(ctx);
+    // console.log(ctx);
     const gradient = ctx.createLinearGradient(0, 0, width, 0);
     const grdntStops = this.getColorStopStops();
     const grdntColors = this.getColorStopColors();
@@ -115,8 +115,6 @@ class PriceIndexChart extends Component {
           />
         </Card.Body>
       </Card>
-      // <div style={{position: 'relative'}}>
-      // </div>
     )
   }
 }

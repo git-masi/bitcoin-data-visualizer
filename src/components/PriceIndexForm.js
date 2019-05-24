@@ -5,6 +5,31 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
   
 class PrinceIndexForm extends Component {
+  state = {
+    currency: 'USD',
+    startDate: null,
+    endDate: null,
+  }
+
+  getDateString = (date) => {
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+        .toISOString()
+        .replace(/[T](\S*)$/, '');
+  }
+
+  getPastDate = (date, numDays = 7) => {
+    date.setDate(date.getDate() - numDays);
+    return this.getDateString(date);
+  }
+
+  componentDidMount() {
+    const date = new Date();
+    this.setState({
+      startDate: this.getPastDate(date),
+      endDate: this.getDateString(date)
+    });
+  }
+
   render() {
     return (
       <Fragment>
