@@ -15,6 +15,38 @@ class PrinceIndexForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  fastActionHandler = (e) => {
+    const d = new Date();
+    const v = e.target.value;
+    switch (true) {
+      case v === 'Past 7 Days':
+        this.setStartAndEndDates(this.getDateString(d), this.getPastDate(d, 7));
+        break;
+      case v === 'Past 30 Days':
+        this.setStartAndEndDates(this.getDateString(d), this.getPastDate(d, 30));
+        break;
+      case v === 'YTD':
+        this.setStartAndEndDates(this.getDateString(d), this.getPastDate(d, this.getYTD(d)));
+        break;
+      case v === 'Past Year':
+        this.setStartAndEndDates(this.getDateString(d), this.getPastDate(d, 365));
+        break;
+      case v === 'All Time':
+        this.setStartAndEndDates(this.getDateString(d), '2010-07-17');
+        break;    
+      default:
+        console.log('something went wrong!')
+        break;
+    }
+  }
+
+  getYTD(date) {
+    const current = new Date(date.getTime());
+    const previous = new Date(date.getFullYear(), 0, 1);
+  
+    return Math.floor((current - previous) / 86400000);
+  }
+
   getDateString = (date) => {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
         .toISOString()
@@ -26,12 +58,19 @@ class PrinceIndexForm extends Component {
     return this.getDateString(date);
   }
 
+  // for now, must pass end date in first
+  setStartAndEndDates = (e, s) => {
+    this.setState({
+      startDate: s,
+      endDate: e,
+    })
+  }
+
+  // I noticed some weird behavior I should ask about.
+  // depending on the order I set state it changes the value of the end date.
   componentDidMount() {
     const date = new Date();
-    this.setState({
-      startDate: this.getPastDate(date),
-      endDate: this.getDateString(date)
-    });
+    this.setStartAndEndDates(this.getDateString(date), this.getPastDate(date))
   }
 
   render() {
@@ -92,7 +131,7 @@ class PrinceIndexForm extends Component {
           <Card.Body>                  
             <Form>
               <Form.Group>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={this.fastActionHandler}>
                 <option>Past 7 Days</option>
                 <option>Past 30 Days</option>
                 <option>YTD</option>
@@ -100,7 +139,6 @@ class PrinceIndexForm extends Component {
                 <option>All Time</option>
               </Form.Control>
               </Form.Group>
-              <Button as="input" variant="outline-primary" type="submit" value="Submit"/>
             </Form>
           </Card.Body>
         </Card>
