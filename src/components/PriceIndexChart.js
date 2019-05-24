@@ -11,7 +11,7 @@ class PriceIndexChart extends Component {
   }
   
   async getPriceIndexData() {
-    const response = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-05-11&end=2019-05-23');
+    const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.props.currency}&start=${this.props.start}&end=${this.props.end}`);
     let data = await response.json();
     return data;
   }
@@ -24,7 +24,6 @@ class PriceIndexChart extends Component {
       }))
       .catch(err => console.log(err))
   }
-
 
   getColorStopColors = () => {
     const colors = ['rgba(231, 76, 60, 1)', 'rgba(241, 196, 15, 1)', 'rgba(46, 204, 113, 1)'];

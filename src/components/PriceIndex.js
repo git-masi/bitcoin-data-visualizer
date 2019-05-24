@@ -11,6 +11,7 @@ class PriceIndex extends Component {
     currency: 'USD',
     startDate: '',
     endDate: '',
+    isLoaded: false,
   }
 
   formSubmitHandler = (obj) => {
@@ -19,11 +20,20 @@ class PriceIndex extends Component {
       startDate: obj.startDate,
       endDate: obj.endDate,
     })
-    console.log('hello from the form submit handler');
-    console.log(obj);
   }
 
+  loadChart = () => {
+    this.setState({isLoaded: true});
+  }
+
+  componentDidUpdate() {
+    if (this.state.startDate && this.state.endDate && !this.state.isLoaded) this.loadChart();
+  }
+
+
   render() {
+    // const { currency, startDate, endDate} = this.state;
+
     return (
       <Fragment>
         <Navigation />
@@ -33,7 +43,14 @@ class PriceIndex extends Component {
               <PriceIndexForm formSubmitHandler={this.formSubmitHandler}/>
             </Col>
             <Col md={8}>
-              <PriceIndexChart />
+              {
+                this.state.isLoaded && 
+                <PriceIndexChart
+                  currency={this.state.currency}
+                  start={this.state.startDate}
+                  end={this.state.endDate}
+                />
+              }
             </Col>
           </Row>
         </Container>
