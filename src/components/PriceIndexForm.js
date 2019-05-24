@@ -15,10 +15,6 @@ class PrinceIndexForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
-  // endDateHandler = (e) => {
-  //   this.setState({endDate: e.target.value});
-  // }
-
   getDateString = (date) => {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
         .toISOString()
