@@ -11,6 +11,7 @@ class PriceIndex extends Component {
     currency: 'USD',
     startDate: '',
     endDate: '',
+    test: [],
     isLoaded: false,
   }
 
@@ -19,6 +20,7 @@ class PriceIndex extends Component {
       currency: obj.currency,
       startDate: obj.startDate,
       endDate: obj.endDate,
+      test: [obj],
     })
   }
 
@@ -32,7 +34,16 @@ class PriceIndex extends Component {
 
 
   render() {
-    // const { currency, startDate, endDate} = this.state;
+    // This seems like a janky way to render a single component
+    // just couldn't seem to figure out how to get it to rerender on state update otherwise
+    const chart = this.state.test.map(el =>
+      <PriceIndexChart
+        currency={el.currency}
+        start={el.startDate}
+        end={el.endDate}
+        key={Math.floor(Math.random() * 10000)}
+      />
+    );
 
     return (
       <Fragment>
@@ -43,14 +54,7 @@ class PriceIndex extends Component {
               <PriceIndexForm formSubmitHandler={this.formSubmitHandler}/>
             </Col>
             <Col md={8}>
-              {
-                this.state.isLoaded && 
-                <PriceIndexChart
-                  currency={this.state.currency}
-                  start={this.state.startDate}
-                  end={this.state.endDate}
-                />
-              }
+              { this.state.isLoaded && chart }
             </Col>
           </Row>
         </Container>
