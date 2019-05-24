@@ -7,9 +7,17 @@ import Button from 'react-bootstrap/Button';
 class PrinceIndexForm extends Component {
   state = {
     currency: 'USD',
-    startDate: null,
-    endDate: null,
+    startDate: '',
+    endDate: '',
   }
+
+  txtInputHandler = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+  }
+
+  // endDateHandler = (e) => {
+  //   this.setState({endDate: e.target.value});
+  // }
 
   getDateString = (date) => {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
@@ -57,13 +65,25 @@ class PrinceIndexForm extends Component {
                 <Col>
                   <Form.Group>
                     <Form.Label>Start Date</Form.Label>
-                    <Form.Control type="text" placeholder="YYYY/MM/DD"></Form.Control>
+                    <Form.Control
+                      type="text"
+                      placeholder="YYYY/MM/DD"
+                      name="startDate"
+                      value={this.state.startDate}
+                      onChange={this.txtInputHandler}
+                    />
                   </Form.Group>
                 </Col>
                 <Col>
                   <Form.Group>
                     <Form.Label>End Date</Form.Label>
-                    <Form.Control type="text" placeholder="YYYY/MM/DD"></Form.Control>
+                    <Form.Control
+                      type="text"
+                      placeholder="YYYY/MM/DD"
+                      name="endDate"
+                      value={this.state.endDate}
+                      onChange={this.txtInputHandler}
+                    />
                   </Form.Group>
                 </Col>
               </Form.Row>
