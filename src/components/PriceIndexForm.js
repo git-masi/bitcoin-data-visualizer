@@ -15,14 +15,8 @@ class PrinceIndexForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
-  formSubmitHandler = (e) => {
-    e.preventDefault();
-    const APIReqObj = {
-      currency: this.state.currency,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
-    }
-    this.props.formSubmitHandler(APIReqObj);
+  currencyChangeHandler = (e) => {
+    this.setState({[e.target.name]: e.target.value}, () => this.formSubmitHandler());
   }
 
   fastActionHandler = (e) => {
@@ -48,6 +42,17 @@ class PrinceIndexForm extends Component {
         console.log('something went wrong!')
         break;
     }
+    this.formSubmitHandler();
+  }
+
+  formSubmitHandler = (e) => {
+    if (e) e.preventDefault();
+    const APIReqObj = {
+      currency: this.state.currency,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+    }
+    this.props.formSubmitHandler(APIReqObj);
   }
 
   getYTD(date) {
@@ -73,7 +78,7 @@ class PrinceIndexForm extends Component {
     this.setState({
       startDate: s,
       endDate: e,
-    })
+    }, () => this.formSubmitHandler())
   }
 
   // I noticed some weird behavior I should ask about.
@@ -91,7 +96,7 @@ class PrinceIndexForm extends Component {
           <Card.Body>
             <Form>
               <Form.Group>
-                <Form.Control as="select" name="currency" onChange={this.inputHandler}>
+                <Form.Control as="select" name="currency" onChange={this.currencyChangeHandler}>
                   <option>USD</option>
                   <option>GBP</option>
                   <option>EUR</option>

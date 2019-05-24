@@ -20,6 +20,7 @@ class PriceIndex extends Component {
       endDate: obj.endDate,
     })
     console.log('hello from the form submit handler');
+    console.log(obj);
   }
 
   render() {
