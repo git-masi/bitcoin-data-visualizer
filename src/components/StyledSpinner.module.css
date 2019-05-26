@@ -1,4 +1,5 @@
 .spinnerContainer {
+  margin: 0 auto;
   height: 30vw;
   width: 30vw;
   display: flex;

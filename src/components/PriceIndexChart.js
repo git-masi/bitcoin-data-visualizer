@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import StyledSpinner from './StyledSpinner';
 import Card from 'react-bootstrap/Card';
 // import chroma from 'chroma-js';
+import styles from './PriceIndexChart.module.css';
 
-  
 class PriceIndexChart extends Component {
   state = {
     labels: [],
     data: [],
+    isLoaded: false,
   }
   
   async getPriceIndexData() {
@@ -27,7 +29,8 @@ class PriceIndexChart extends Component {
     this.getPriceIndexData()
       .then(d => this.setState({
         labels: Object.keys(d.bpi),
-        data: Object.values(d.bpi)     
+        data: Object.values(d.bpi),
+        isLoaded: true,
       }))
       .catch(err => console.log(err))
   }
@@ -83,9 +86,9 @@ class PriceIndexChart extends Component {
     const height = canvas.clientHeight;
     // const width = canvas.clientWidth;
     const ctx = canvas.getContext('2d');
-    console.log(ctx);
-    console.log(height);
-    console.log(ctx.canvas.clientHeight);
+    // console.log(ctx);
+    // console.log(height);
+    // console.log(ctx.canvas.clientHeight);
 
     const gradient = ctx.createLinearGradient(0, height, 0, 0);
     gradient.addColorStop(0, 'rgba(231, 76, 60, .7)');
@@ -124,16 +127,32 @@ class PriceIndexChart extends Component {
   }
 
   render() {
+    // Can't conditinally render or else the chart colors get messed up, not sure why
+    // const chartArea = this.state.isLoaded ?
+    //   <Line 
+    //     options={{
+    //       responsive: true,
+    //     }}
+    //     data={this.makeChart}
+    //   /> :
+    //   <StyledSpinner />
+
     return (
       <Card>
         <Card.Header>Historical Bitcoin Price Data</Card.Header>
         <Card.Body style={{position: 'relative'}}>  
-          <Line 
-            options={{
-              responsive: true,
-            }}
-            data={this.makeChart}
-          />
+          {/* { chartArea } */}
+          {/* <div className={this.state.isLoaded ? '' : styles.hide}> */}
+            <Line 
+              options={{
+                responsive: true,
+              }}
+              data={this.makeChart}
+            />
+          {/* </div> */}
+          {/* <div className={this.state.isLoaded ? styles.hide : ''}> */}
+            {/* <StyledSpinner /> */}
+          {/* </div> */}
         </Card.Body>
       </Card>
     )
