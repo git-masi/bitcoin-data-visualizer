@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Navigation from './Navigation';
+import StyledSpinner from './StyledSpinner';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Row from 'react-bootstrap/Row';
@@ -7,7 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner'
 import styles from './Home.module.css';
   
 class Home extends Component {
@@ -127,11 +127,7 @@ class Home extends Component {
       <Container>
         <Row className="justify-content-center mt-5">
           <Col xs="auto">
-            <div className={styles.spinnerContainer}>
-              <Spinner className={styles.spinner} animation="border" variant="primary" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </div>
+            <StyledSpinner />
           </Col>
         </Row>
       </Container>

@@ -1,18 +1,3 @@
-.spinnerContainer {
-  height: 30vw;
-  width: 30vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, .9);
-  border-radius: .5rem;
-}
-
-.spinner {
-  height: 20vw;
-  width: 20vw;
-}
-
 .jumbotron {
   padding: 2rem 2rem;
   border-radius: 20px;
