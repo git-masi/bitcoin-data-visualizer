@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 // import StyledSpinner from './StyledSpinner';
 import Card from 'react-bootstrap/Card';
 // import styles from './PriceIndexChart.module.css';
+import 'chartjs-plugin-downsample';
 
 class PriceIndexChart extends Component {
   state = {
@@ -72,6 +73,7 @@ class PriceIndexChart extends Component {
         },
       ]
     }
+
     return chartData;
   }
 
@@ -95,6 +97,16 @@ class PriceIndexChart extends Component {
             <Line 
               options={{
                 responsive: true,
+                downsample: {
+                  enabled: true,
+                  threshold: 50, // change this
+       
+                  auto: false, // don't re-downsample the data every move
+                  onInit: true, // but do resample it when we init the chart (this is default)
+       
+                  preferOriginalData: true, // use our original data when downscaling so we can downscale less, if we need to.
+                  restoreOriginalData: false, // if auto is false and this is true, original data will be restored on pan/zoom - that isn't what we want.
+                }
               }}
               data={this.makeChart}
             />
