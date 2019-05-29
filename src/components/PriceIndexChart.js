@@ -5,39 +5,17 @@ import Card from 'react-bootstrap/Card';
 // import styles from './PriceIndexChart.module.css';
 import 'chartjs-plugin-downsample';
 
+import { defaults } from 'react-chartjs-2';
+
+// Disable animating charts by default.
+defaults.global.animation = false;
+
 class PriceIndexChart extends Component {
-  state = {
-    labels: [],
-    data: [],
-    isLoaded: false,
-  }
-  
-  async getPriceIndexData() {
-    const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.props.currency}&start=${this.props.start}&end=${this.props.end}`,{
-      signal: this.controller.signal
-    });
-    let data = await response.json();
-    return data;
-  }
-
-  // not sure what this does but it gets rid of the error
-  // throws a DOMException though
-  // I should ask about this
-  controller = new AbortController();
-
-  componentDidMount() {
-    this.getPriceIndexData()
-      .then(d => this.setState({
-        labels: Object.keys(d.bpi),
-        data: Object.values(d.bpi),
-        isLoaded: true,
-      }))
-      .catch(err => console.log(err))
-  }
-
-  componentWillUnmount(){
-    this.controller.abort();
-  }
+  // state = {
+  //   labels: [],
+  //   data: [],
+  //   isLoaded: false,
+  // }
 
   setColorGradient = (canvas) => {
     const height = canvas.clientHeight;
@@ -60,11 +38,11 @@ class PriceIndexChart extends Component {
 
   makeChart = canvas => {
     const chartData = {
-      labels: this.state.labels,
+      labels: this.props.labels,
       datasets: [
         {
           label: 'bitcoin price',
-          data: this.state.data,
+          data: this.props.data,
           backgroundColor: this.setColorGradient(canvas),
           borderColor: 'rgba(52, 73, 94, 1.0)',
           borderWidth: 2,
@@ -97,16 +75,16 @@ class PriceIndexChart extends Component {
             <Line 
               options={{
                 responsive: true,
-                downsample: {
-                  enabled: true,
-                  threshold: 50, // change this
+                // downsample: {
+                //   enabled: true,
+                //   threshold: 50, // change this
        
-                  auto: false, // don't re-downsample the data every move
-                  onInit: true, // but do resample it when we init the chart (this is default)
+                //   auto: false, // don't re-downsample the data every move
+                //   onInit: true, // but do resample it when we init the chart (this is default)
        
-                  preferOriginalData: true, // use our original data when downscaling so we can downscale less, if we need to.
-                  restoreOriginalData: false, // if auto is false and this is true, original data will be restored on pan/zoom - that isn't what we want.
-                }
+                //   preferOriginalData: true, // use our original data when downscaling so we can downscale less, if we need to.
+                //   restoreOriginalData: false, // if auto is false and this is true, original data will be restored on pan/zoom - that isn't what we want.
+                // }
               }}
               data={this.makeChart}
             />
