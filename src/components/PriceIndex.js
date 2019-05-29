@@ -57,31 +57,12 @@ class PriceIndex extends Component {
   }
 
   componentWillUnmount() {
-    console.log('unmount');
+    // console.log('unmount');
     this.controller.abort();
   }
 
-  // loadChart = () => {
-  //   this.setState({isLoaded: true});
-  // }
-
-  // componentDidUpdate() {
-  //   if (this.state.startDate && this.state.endDate && !this.state.isLoaded) this.loadChart();
-  // }
-
 
   render() {
-    // This seems like a janky way to render a single component
-    // just couldn't seem to figure out how to get it to rerender on state update otherwise
-    // const chart = this.state.charts.map(el =>
-    //   <PriceIndexChart
-    //     currency={el.currency}
-    //     start={el.startDate}
-    //     end={el.endDate}
-    //     key={Math.floor(Math.random() * 10000)}
-    //   />
-    // );
-
     const getMaxMinAvg = () => {
       if (this.state.data.length <= 0) return;
       const data = [...this.state.data];
@@ -116,8 +97,6 @@ class PriceIndex extends Component {
               <PriceIndexForm formSubmitHandler={this.formSubmitHandler}/>
             </Col>
             <Col md={8}>
-              {/* { this.state.isLoaded && chart } */}
-              {/* { chart } */}
               <PriceIndexChart currency={this.state.currency} data={this.state.data} labels={this.state.labels}/>
               { getMaxMinAvg() }
             </Col>
