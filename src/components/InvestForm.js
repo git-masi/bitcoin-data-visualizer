@@ -8,6 +8,8 @@ class InvestForm extends Component {
   state = {
     purchaseDate: '',
     saleDate: '',
+    purchaseQuant: 0,
+    saleQuant: 0,
   }
 
   inputHandler = (e) => {
@@ -37,6 +39,15 @@ class InvestForm extends Component {
                   onChange={this.inputHandler}
                 />
               </Form.Group>
+              <Form.Group>
+                <Form.Label>Purchase Quantity</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="purchaseQuant"
+                  value={this.state.purchaseQuant}
+                  onChange={this.inputHandler}
+                />
+              </Form.Group>
             </Col>
             <Col>
               <Form.Group>
@@ -46,6 +57,15 @@ class InvestForm extends Component {
                   placeholder="YYYY/MM/DD"
                   name="saleDate"
                   value={this.state.saleDate}
+                  onChange={this.inputHandler}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Sale Quantity</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="saleQuant"
+                  value={this.state.saleQuant}
                   onChange={this.inputHandler}
                 />
               </Form.Group>
