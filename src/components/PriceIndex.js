@@ -26,33 +26,46 @@ class PriceIndex extends Component {
     })
   }
 
-  async getPriceIndexData() {
-    const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.state.currency}&start=${this.state.startDate}&end=${this.state.endDate}`,{
-      signal: this.controller.signal
-    });
-    let data = await response.json();
-    return data;
-  }
-
   // not sure what this does but it gets rid of the error
   // throws a DOMException though
   // I should ask about this
   controller = new AbortController();
+  
+  componentDidUpdate(prevProps, prevState) {
+    const getPriceIndexData = async () => {
+      // console.log('getting data')
+      const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${this.state.currency}&start=${this.state.startDate}&end=${this.state.endDate}`,{
+        signal: this.controller.signal
+      });
+      let data = await response.json();
+      return data;
+    }
 
-  componentDidUpdate() {
-    this.getPriceIndexData()
-      .then(d => this.setState({
-        labels: Object.keys(d.bpi),
-        data: Object.values(d.bpi),
-        isLoaded: true,
-      }))
-      .catch(err => console.log(err))
+    // console.log(prevState.endDate, this.state.endDate, prevState.startDate, this.state.startDate);
+    if (prevState.endDate !== this.state.endDate || prevState.startDate !== this.state.startDate) {
+      // console.log('inside the if statement')
+      getPriceIndexData()
+        .then(d => this.setState({
+          labels: Object.keys(d.bpi),
+          data: Object.values(d.bpi),
+          isLoaded: true,
+        }))
+        .catch(err => console.log(err))
+    }
+
+    // this.controller.abort();
+
+    // Object.entries(this.props).forEach(([key, val]) =>
+    //   prevProps[key] !== val && console.log(`Prop '${key}' changed`)
+    // );
+    // Object.entries(this.state).forEach(([key, val]) =>
+    //   prevState[key] !== val && console.log(`State '${key}' changed`)
+    // );
   }
 
   componentWillUnmount() {
     this.controller.abort();
   }
-
 
   render() {
     const getMaxMinAvg = () => {
