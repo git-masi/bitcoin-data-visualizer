@@ -11,8 +11,7 @@ class VolatilityIndex extends Component {
     volatility: [],
   }
 
-  async getPriceIndexData(currency, start, end) {
-    // console.log('getting data')
+  async getPriceIndexData(currency = 'USD', start, end) {
     const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}&start=${start}&end=${end}`);
     let data = await response.json();
     return data;
@@ -24,48 +23,34 @@ class VolatilityIndex extends Component {
     const square = deviation.map(d => d**2);
     const sum = square.reduce((acc, cur) => acc += cur);
     const volatility = Math.sqrt(sum / arr.length);
-    // console.log(arr, avg, deviation, square, sum, volatility);
+
     return volatility;
   }
 
-  //INFINITE LOOP
-  //================================================================
+  componentDidMount() {
+    const dates = []
+    for (let r of this.props.volatilityRanges) {
+      dates.push(getDateRange(r));
+    }
 
-  // async cardText() {
-  //   let output = [];
-  //   for (let r of this.props.volatilityRanges) {
-  //     const dates = getDateRange(r)
-  //     this.getPriceIndexData('USD', dates[1], dates[0])
-  //       .then(data => Object.values(data.bpi))
-  //       .then(vals => this.calcVolatility(vals))
-  //       .then(vol => output.push(vol))
-  //   }
-  //   this.setState({volatility: output})
-  // }
-
-  // <Card.Text>{r} ${vol.toFixed(2)}</Card.Text>
-  
-  // componentDidUpdate(prevProps, prevState) {
-  //   Object.entries(this.props).forEach(([key, val]) =>
-  //     prevProps[key] !== val && console.log(`Prop '${key}' changed`)
-  //   );
-  //   Object.entries(this.state).forEach(([key, val]) =>
-  //     prevState[key] !== val && console.log(`State '${key}' changed`)
-  //   );
-  // }
+    for (let date of dates) {
+      this.getPriceIndexData('USD', date[1], date[0])
+        .then(data => Object.values(data.bpi))
+        .then(val => this.calcVolatility(val))
+        .then(vol => this.setState({volatility: [...this.state.volatility, vol]}))
+    }
+  }
 
   render() {
-    this.cardText();
+    const cardText = this.state.volatility.map((el, i) => {
+      return <Card.Text key={i}>{this.props.volatilityRanges[i]}: ${el.toFixed(2)}</Card.Text>
+    })
+
     return (
       <Card>
         <Card.Header>Historical Price Volatility</Card.Header>
         <Card.Body>
-          {/* <Card.Text>7 Day: </Card.Text>
-          <Card.Text>30 Day: </Card.Text>
-          <Card.Text>TYD: </Card.Text>
-          <Card.Text>Past Year: </Card.Text>
-          <Card.Text>All Time: </Card.Text> */}
-          {/* { cardText() } */}
+          { cardText }
         </Card.Body>
       </Card>
     )
