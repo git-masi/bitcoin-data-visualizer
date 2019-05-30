@@ -14,13 +14,8 @@ class PriceIndex extends Component {
     currency: 'USD',
     startDate: '',
     endDate: '',
-    charts: [],
     labels: [],
     data: [],
-    max: 0,
-    min: 0,
-    average: 0,
-    // isLoaded: false,
   }
 
   formSubmitHandler = (obj) => {
@@ -28,8 +23,6 @@ class PriceIndex extends Component {
       currency: obj.currency,
       startDate: obj.startDate,
       endDate: obj.endDate,
-      // isLoaded: false,
-      charts: [obj],
     })
   }
 
@@ -57,7 +50,6 @@ class PriceIndex extends Component {
   }
 
   componentWillUnmount() {
-    // console.log('unmount');
     this.controller.abort();
   }
 
