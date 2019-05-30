@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 import getDateRange from '../dates';
 
 class VolatilityIndex extends Component {
@@ -43,11 +44,11 @@ class VolatilityIndex extends Component {
 
   render() {
     const cardText = this.state.volatility.map((el, i) => {
-      return <Card.Text key={i}>{this.props.volatilityRanges[i]}: ${el.toFixed(2)}</Card.Text>
+      return <Card.Text key={i}>{this.props.volatilityRanges[i]}: <Badge variant="secondary">${el.toFixed(2)}</Badge></Card.Text>
     })
 
     return (
-      <Card>
+      <Card className="mt-3">
         <Card.Header>Historical Price Volatility</Card.Header>
         <Card.Body>
           { cardText }
