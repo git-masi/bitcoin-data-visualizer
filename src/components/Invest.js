@@ -6,12 +6,15 @@ import Col from 'react-bootstrap/Col';
 // import Card from 'react-bootstrap/Card';
 import VolatilityIndex from './VolatilityIndex';
 import InvestForm from './InvestForm';
-import finance from 'financejs';
+
+const Finance = require('financejs');
+const finance = new Finance();
   
 class Invest extends Component {
   state = {
     purchasePrice: 0,
     salePrice: 0,
+    ROI: 0,
   }
 
   formSubmitHandler = (purDate, saleDate) => {
@@ -30,11 +33,30 @@ class Invest extends Component {
 
     getPriceIndexData(saleDate)
       .then(d => d.bpi)
-      .then(p => this.setState({salePrice: Object.values(p)[0]}))
+      .then(p => this.setState({salePrice: Object.values(p)[0]}, () => this.getROI()))
       .catch(err => console.log(err))
   }
 
+  getROI = () => {
+    const roi = finance.ROI(this.state.purchasePrice, this.state.salePrice);
+    this.setState({ROI: roi});
+  }
+
+  // for whatever reason both prevProps and prevState need to be included as parameters
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevState.ROI, this.state.ROI)
+  //   if (this.state.ROI === prevState.ROI) {
+  //     const roi = finance.ROI(this.state.purchasePrice, this.state.salePrice);
+  //     console.log(roi);
+  //     this.setState({ROI: roi});
+
+  //     // console.log('inside the roi');
+  //     // this.getROI();
+  //   }
+  // }
+
   render() {
+
     return (
       <Fragment>
         <Navigation/>
