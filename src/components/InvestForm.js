@@ -7,8 +7,8 @@ import finance from 'financejs';
   
 class InvestForm extends Component {
   state = {
-    startDate: '',
-    endDate: '',
+    purchaseDate: '',
+    saleDate: '',
   }
 
   inputHandler = (e) => {
@@ -29,24 +29,24 @@ class InvestForm extends Component {
           <Form.Row>
             <Col>
               <Form.Group>
-                <Form.Label>Start Date</Form.Label>
+                <Form.Label>Purchase Date</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="YYYY/MM/DD"
-                  name="startDate"
-                  value={this.state.startDate}
+                  name="purchaseDate"
+                  value={this.state.purchaseDate}
                   onChange={this.inputHandler}
                 />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group>
-                <Form.Label>End Date</Form.Label>
+                <Form.Label>Sale Date</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="YYYY/MM/DD"
-                  name="endDate"
-                  value={this.state.endDate}
+                  name="saleDate"
+                  value={this.state.saleDate}
                   onChange={this.inputHandler}
                 />
               </Form.Group>

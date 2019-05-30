@@ -1,0 +1,13 @@
+.volatility :global(.card-body) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.volatility :global(.card-text) {
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
+.volatility :global(.card-text:not(:last-of-type)) {
+  margin-right: 1rem !important;
+}

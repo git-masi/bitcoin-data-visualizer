@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import getDateRange from '../dates';
+import styles from './VolatilityIndex.module.css';
 
 class VolatilityIndex extends Component {
   static defaultProps = {
@@ -50,7 +51,7 @@ class VolatilityIndex extends Component {
     return (
       <Card className="mt-3">
         <Card.Header>Historical Price Volatility</Card.Header>
-        <Card.Body>
+        <Card.Body className={styles.volatility}>
           { cardText }
         </Card.Body>
       </Card>
