@@ -3,7 +3,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import finance from 'financejs';
   
 class InvestForm extends Component {
   state = {
@@ -17,12 +16,12 @@ class InvestForm extends Component {
 
   formSubmitHandler = (e) => {
     if (e) e.preventDefault();
-
+    this.props.formSubmitHandler(this.state.purchaseDate, this.state.saleDate);
   }
 
   render() {
     return (
-      <Card border="light" className="mb-2">
+      <Card border="light" className="mt-3">
       <Card.Header>Date Range</Card.Header>
       <Card.Body>
         <Form onSubmit={this.formSubmitHandler}>
