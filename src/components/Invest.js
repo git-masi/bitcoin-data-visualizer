@@ -12,13 +12,24 @@ const finance = new Finance();
   
 class Invest extends Component {
   state = {
+    curPrice: 0,
     purchasePrice: 0,
     salePrice: 0,
     ROI: 0,
   }
 
-  formSubmitHandler = (purDate, saleDate) => {
+  formSubmitHandler = (formObj) => {
     const currency = 'USD';
+
+    const getBitcoinPrice = async () => {
+      const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
+      let data = await response.json();
+      return data;
+    }
+
+    getBitcoinPrice()
+      .then(data => data.bpi.USD.rate_float)
+      .then(rate => this.setState({curPrice: rate}))
 
     const getPriceIndexData = async (date) => {
       const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}&start=${date}&end=${date}`);
@@ -26,15 +37,19 @@ class Invest extends Component {
       return data;
     }
 
-    getPriceIndexData(purDate)
+    getPriceIndexData(formObj.purchaseDate)
       .then(d => d.bpi)
       .then(p => this.setState({purchasePrice: Object.values(p)[0]}))
       .catch(err => console.log(err))
 
-    getPriceIndexData(saleDate)
+    getPriceIndexData(formObj.saleDate)
       .then(d => d.bpi)
-      .then(p => this.setState({salePrice: Object.values(p)[0]}, () => this.getROI()))
+      .then(p => this.setState({salePrice: Object.values(p)[0]}, () => this.getStats(formObj)))
       .catch(err => console.log(err))
+  }
+
+  getStats = (obj) => {
+    this.getROI(obj.saleQuant)
   }
 
   getROI = () => {

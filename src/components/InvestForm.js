@@ -18,7 +18,13 @@ class InvestForm extends Component {
 
   formSubmitHandler = (e) => {
     if (e) e.preventDefault();
-    this.props.formSubmitHandler(this.state.purchaseDate, this.state.saleDate);
+    const stateObj = {
+      purchaseDate: this.state.purchaseDate,
+      saleDate: this.state.saleDate,
+      purchaseQuant: this.state.purchaseQuant,
+      saleQuant: this.state.saleQuant,
+    }
+    this.props.formSubmitHandler(stateObj);
   }
 
   render() {
