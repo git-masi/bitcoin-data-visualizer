@@ -53,6 +53,23 @@ class PriceIndexChart extends Component {
             <Line 
               options={{
                 responsive: true,
+                legend: false,
+                scales: {
+                  xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Date',
+                    }
+                  }],
+                  yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: `Price (${this.props.currency})`,
+                    }
+                  }]
+                }
               }}
               data={this.makeChart}
             />
