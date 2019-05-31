@@ -21,8 +21,8 @@ class InvestResults extends Component {
 
     return (
       <Fragment>
-        <Col lg={4}>
-          <Card className="mt-3">
+        <Col lg={4} className="mb-3">
+          <Card className={`mt-3 ${styles.fullHeight}`}>
             <Card.Header>Results</Card.Header>
             <Card.Body>
               <Table striped bordered hover size="sm">
@@ -52,26 +52,32 @@ class InvestResults extends Component {
             </Card.Body>
           </Card>
         </Col>
-        <Col lg={4}>
-          <Card body className="mt-3">
-            <Doughnut
-              data = {{
-                datasets: [{
-                    data: [gainOrLoss, totalSale, remValue],
-                    backgroundColor: ['rgba(46, 204, 113, .7)', 'rgba(230, 126, 34, .7)', 'rgba(52, 152, 219, .7)'],
-                }],
-            
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                  'Gain/Loss',
-                  'Sale',
-                  'Remaining Value',
-                ]
-              }}
-              options = {{
-                responsive: true,
-              }}
-            />
+        <Col lg={4} className="mb-3">
+          <Card className={`mt-3 ${styles.fullHeight}`}>
+            {/* <Card.Body className="flex-grow-1"> */}
+              <Doughnut
+                data = {{
+                  datasets: [{
+                      data: [gainOrLoss, totalSale, remValue],
+                      backgroundColor: [`${gainOrLoss >= 0 ? 'rgba(46, 204, 113, .7)' : 'rgba(231, 76, 60, .7)'}`, 'rgba(52, 152, 219, .7)', 'rgba(52, 73, 94, .7)'],
+                  }],
+              
+                  // These labels appear in the legend and in the tooltips when hovering different arcs
+                  labels: [
+                    `${gainOrLoss >= 0 ? 'Gain' : 'Loss'}`,
+                    'Sale',
+                    'Remaining Value',
+                  ]
+                }}
+                options = {{
+                  responsive: true,
+                  legend: {
+                    display: true,
+                    position: 'top',
+                  }
+                }}
+              />
+            {/* </Card.Body> */}
           </Card>
         </Col>
       </Fragment>
