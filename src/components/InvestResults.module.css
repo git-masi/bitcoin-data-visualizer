@@ -1,0 +1,9 @@
+.gain {
+  font-weight: bold;
+  color: rgba(46, 204, 113,1.0);
+}
+
+.loss {
+  font-weight: bold;
+  color: rgba(231, 76, 60,1.0);
+}

@@ -16,6 +16,7 @@ class InvestForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  // there is a bug when a user hits enter with the submit button focused
   formSubmitHandler = (e) => {
     if (e) e.preventDefault();
     const stateObj = {
