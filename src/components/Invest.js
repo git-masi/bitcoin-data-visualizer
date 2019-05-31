@@ -4,8 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 // import Card from 'react-bootstrap/Card';
-import VolatilityIndex from './VolatilityIndex';
+// import Table from 'react-bootstrap/Table';
 import InvestForm from './InvestForm';
+import InvestResults from './InvestResults';
+import VolatilityIndex from './VolatilityIndex';
 
 const Finance = require('financejs');
 const finance = new Finance();
@@ -15,6 +17,8 @@ class Invest extends Component {
     curPrice: 0,
     purchasePrice: 0,
     salePrice: 0,
+    purchaseQuant: 0,
+    saleQuant: 0,
     ROI: 0,
   }
 
@@ -49,7 +53,9 @@ class Invest extends Component {
   }
 
   getStats = (obj) => {
+    // console.log(obj)
     this.getROI(obj.saleQuant)
+    this.setState({purchaseQuant: Number(obj.purchaseQuant), saleQuant: Number(obj.saleQuant)})
   }
 
   getROI = () => {
@@ -71,15 +77,23 @@ class Invest extends Component {
   // }
 
   render() {
-
+    const { curPrice, salePrice, purchasePrice, saleQuant, purchaseQuant, ROI } = this.state;
     return (
       <Fragment>
         <Navigation/>
         <Container className="mb-4">
           <Row>
-            <Col md={4}>
+            <Col lg={4}>
               <InvestForm formSubmitHandler={this.formSubmitHandler}/>
             </Col>
+            <InvestResults
+              curPrice={curPrice}
+              salePrice={salePrice}
+              purchasePrice={purchasePrice}
+              saleQuant={saleQuant}
+              purchaseQuant={purchaseQuant}
+              ROI={ROI}
+            />
           </Row>
           <Row className="mt-3">
             <VolatilityIndex />

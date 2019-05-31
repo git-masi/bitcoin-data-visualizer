@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 // import Badge from 'react-bootstrap/Badge';
 import { Bar, Line } from 'react-chartjs-2';
 import getDateRange from '../dates';
-import styles from './VolatilityIndex.module.css';
+// import styles from './VolatilityIndex.module.css';
 
 class VolatilityIndex extends Component {
   static defaultProps = {
