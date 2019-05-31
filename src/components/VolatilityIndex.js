@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 // import Badge from 'react-bootstrap/Badge';
 import { Bar, Line } from 'react-chartjs-2';
@@ -46,7 +47,8 @@ class VolatilityIndex extends Component {
         {
           label: 'Historical Volatility',
           data: this.state.volatility,
-          backgroundColor: 'rgba(46, 204, 113, .6)',
+          borderColor: 'rgba(52, 73, 94, 1.0)',
+          backgroundColor: 'rgba(189, 195, 199, .6)',
           borderWidth: 2,
         },
       ]
@@ -88,18 +90,18 @@ class VolatilityIndex extends Component {
   }
 
   makeLineChart = canvas => {
-    const d = [1.345, 8.115, 27.918, 42.3, 27.918, 8.115, 1.345];
     const chartData = {
       labels: this.state.deviations,
       datasets: [
         {
-          label: 'Historical Volatility',
-          data: d,
+          label: 'Probability of Future 7 Day Price',
+          data: [1.345, 8.115, 27.918, 42.3, 27.918, 8.115, 1.345],
           backgroundColor: this.setColorGradient(canvas),
           // backgroundColor: 'rgba(46, 204, 113, .6)',
           borderColor: 'rgba(52, 73, 94, 1.0)',
           borderWidth: 2,
           lineTension: .3,
+          // xAxisID: 'Price',
         },
       ]
     }
@@ -143,26 +145,65 @@ class VolatilityIndex extends Component {
 
     return (
       <Fragment>
-        <Card className="mt-3">
-          <Card.Header>Historical Price Volatility</Card.Header>
-          <Bar
-            options={{
-              responsive: true,
-            }}
-            data={this.makeBarChart}
-          />
-          {/* <Card.Body className={styles.volatility}>
-            { cardText }
-          </Card.Body> */}
-        </Card>
-        <Card>
-          <Line
-            options={{
-              responsive: true,
-            }}
-            data={this.makeLineChart}
-          />
-        </Card>
+        <Col lg={6} className="mb-2">
+          <Card>
+            <Card.Header className="mb-2">Historical Price Volatility</Card.Header>
+            <Bar
+              options={{
+                responsive: true,
+                legend: false,
+                scales: {
+                  xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Time Period',
+                    }
+                  }],
+                  yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Price (USD)',
+                    }
+                  }]
+                }
+              }}
+              data={this.makeBarChart}
+            />
+            {/* <Card.Body className={styles.volatility}>
+              { cardText }
+            </Card.Body> */}
+          </Card>
+        </Col>
+        <Col lg={6}>
+          <Card>
+            <Card.Header className="mb-2">Probability of Future 7 Day Price</Card.Header>
+            <Line
+              options={{
+                responsive: true,
+                legend: false,
+                scales: {
+                  xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Price (USD)',
+                    }
+                  }],
+                  yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: '% Probability',
+                    }
+                  }]
+                }
+              }}
+              data={this.makeLineChart}
+            />
+          </Card>
+        </Col>
       </Fragment>
     )
   }

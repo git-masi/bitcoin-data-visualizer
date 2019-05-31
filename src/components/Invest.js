@@ -80,9 +80,9 @@ class Invest extends Component {
             <Col md={4}>
               <InvestForm formSubmitHandler={this.formSubmitHandler}/>
             </Col>
-            <Col>
-              <VolatilityIndex />
-            </Col>
+          </Row>
+          <Row className="mt-3">
+            <VolatilityIndex />
           </Row>
         </Container>
       </Fragment>
