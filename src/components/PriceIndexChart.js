@@ -17,10 +17,10 @@ class PriceIndexChart extends Component {
 
     const gradient = ctx.createLinearGradient(0, height, 0, 0);
     gradient.addColorStop(0, 'rgba(231, 76, 60, .7)');
-    gradient.addColorStop(.34, 'rgba(231, 76, 60, .7)');
-    gradient.addColorStop(.34, 'rgba(241, 196, 15, .7)');
-    gradient.addColorStop(.62, 'rgba(241, 196, 15, .7)');
-    gradient.addColorStop(.62, 'rgba(46, 204, 113, .7)');
+    gradient.addColorStop(.38, 'rgba(231, 76, 60, .7)');
+    gradient.addColorStop(.38, 'rgba(241, 196, 15, .7)');
+    gradient.addColorStop(.67, 'rgba(241, 196, 15, .7)');
+    gradient.addColorStop(.67, 'rgba(46, 204, 113, .7)');
     gradient.addColorStop(1, 'rgba(46, 204, 113, .7)');
 
     return gradient;
