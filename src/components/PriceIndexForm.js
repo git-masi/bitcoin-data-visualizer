@@ -49,9 +49,21 @@ class PrinceIndexForm extends Component {
   formSubmitHandler = (e) => {
     if (e) {
       e.preventDefault()
+
+      const { startDate, endDate } = this.state;
       const form = e.currentTarget;
-      // console.log(form.checkValidity())
+
+      function earliestDate(date) {
+        return Number(date.replace(/-/g, '')) >= 20100717;
+      }
+
+      function startBeforeEnd(d1, d2) {
+        return Number(d1.replace(/-/g, '')) < Number(d2.replace(/-/g, ''))
+      }
+      
       if (!form.checkValidity()) return;
+      if (!earliestDate(startDate)) return;
+      if (!startBeforeEnd(startDate, endDate)) return;
     }
 
     const APIReqObj = {
