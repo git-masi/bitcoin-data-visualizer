@@ -9,6 +9,7 @@ class PrinceIndexForm extends Component {
     currency: 'USD',
     startDate: '',
     endDate: '',
+    validated: false,
   }
 
   inputHandler = (e) => {
@@ -46,7 +47,13 @@ class PrinceIndexForm extends Component {
   }
 
   formSubmitHandler = (e) => {
-    if (e) e.preventDefault();
+    if (e) {
+      e.preventDefault()
+      const form = e.currentTarget;
+      // console.log(form.checkValidity())
+      if (!form.checkValidity()) return;
+    }
+
     const APIReqObj = {
       currency: this.state.currency,
       startDate: this.state.startDate,
@@ -89,6 +96,8 @@ class PrinceIndexForm extends Component {
   }
 
   render() {
+    const { validated } = this.state
+
     return (
       <Fragment>
         <Card className="mb-2">
@@ -110,17 +119,19 @@ class PrinceIndexForm extends Component {
         <Card border="light" className="mb-2">
           <Card.Header>Date Range</Card.Header>
           <Card.Body>
-            <Form onSubmit={this.formSubmitHandler}>
+            <Form noValidate validated={validated} onSubmit={this.formSubmitHandler}>
               <Form.Row>
                 <Col>
                   <Form.Group>
                     <Form.Label>Start Date</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="YYYY/MM/DD"
+                      placeholder="YYYY-MM-DD"
                       name="startDate"
                       value={this.state.startDate}
                       onChange={this.inputHandler}
+                      required
+                      pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
                     />
                   </Form.Group>
                 </Col>
@@ -129,10 +140,13 @@ class PrinceIndexForm extends Component {
                     <Form.Label>End Date</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="YYYY/MM/DD"
+                      placeholder="YYYY-MM-DD"
                       name="endDate"
                       value={this.state.endDate}
                       onChange={this.inputHandler}
+                      required
+                      pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                      title="Year, month, day each separated by -"
                     />
                   </Form.Group>
                 </Col>
