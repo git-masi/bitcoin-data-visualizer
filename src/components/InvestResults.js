@@ -24,7 +24,7 @@ class InvestResults extends Component {
         <Col lg={4} className="mb-3">
           <Card className={`mt-3 ${styles.fullHeight}`}>
             <Card.Header>Results</Card.Header>
-            <Card.Body>
+            <Card.Body className="d-flex justify-content-center align-items-center">
               <Table striped bordered hover size="sm">
                 <tbody>
                   <tr>
@@ -53,7 +53,7 @@ class InvestResults extends Component {
           </Card>
         </Col>
         <Col lg={4} className="mb-3">
-          <Card className={`mt-3 ${styles.fullHeight}`}>
+          <Card className={`mt-3 justify-content-center align-items-center ${styles.fullHeight}`}>
             {/* <Card.Body className="flex-grow-1"> */}
               <Doughnut
                 data = {{
