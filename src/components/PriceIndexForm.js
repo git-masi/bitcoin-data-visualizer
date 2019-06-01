@@ -155,7 +155,7 @@ class PrinceIndexForm extends Component {
                     <OverlayTrigger
                       placement="bottom"
                       overlay={
-                        <Tooltip id="bottom">
+                        <Tooltip>
                           Use YYYY-MM-DD format. Cannot be earlier than 2010-07-17.
                         </Tooltip>
                       }
@@ -178,7 +178,7 @@ class PrinceIndexForm extends Component {
                     <OverlayTrigger
                       placement="bottom"
                       overlay={
-                        <Tooltip id="bottom">
+                        <Tooltip>
                           Use YYYY-MM-DD format. Cannot be the same as or earlier than the Start Date.
                         </Tooltip>
                       }
