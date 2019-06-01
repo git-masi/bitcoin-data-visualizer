@@ -21,28 +21,11 @@ class InvestForm extends Component {
 
   // there is a bug when a user hits enter with the submit button focused
   formSubmitHandler = (e) => {
+    const form = e.currentTarget;
     if (e) {
       e.preventDefault()
-
-      const { purchaseDate, saleDate, purchaseQuant, saleQuant } = this.state;
-      const form = e.currentTarget;
-
-      function earliestDate(date) {
-        return Number(date.replace(/-/g, '')) >= 20100717;
-      }
-
-      function startBeforeEnd(d1, d2) {
-        return Number(d1.replace(/-/g, '')) < Number(d2.replace(/-/g, ''))
-      }
-
-      function purchaseQHigherThanSaleQ(pQ, sQ) {
-        return (pQ >= sQ);
-      }
-      
+      e.stopPropagation();
       if (!form.checkValidity()) return;
-      if (!earliestDate(purchaseDate)) return;
-      if (!startBeforeEnd(purchaseDate, saleDate)) return;
-      if (!purchaseQHigherThanSaleQ(purchaseQuant, saleQuant)) return;
     }
     
     this.setState({validated: true});
@@ -58,7 +41,17 @@ class InvestForm extends Component {
   }
 
   render() {
-    const { validated } = this.state
+    const { validated, purchaseDate, saleDate, purchaseQuant, saleQuant } = this.state
+
+    const getNextDay = () => {
+      if (purchaseDate === '') return;
+      const parse = Date.parse(purchaseDate);
+      const d1 = new Date(parse);
+      const offsetDate = new Date(parse + (d1.getTimezoneOffset() * 60000 ));
+      const tomorrow = new Date(offsetDate.setDate(offsetDate.getDate() + 1));
+      const dateString = tomorrow.toISOString().replace(/[T](\S*)$/, '');
+      return dateString;
+    }
 
     return (
       <Card border="light" className="mt-3">
@@ -73,14 +66,14 @@ class InvestForm extends Component {
                   placement="bottom"
                   overlay={
                     <Tooltip>
-                      Cannot be earlier than 2010-07-17.
+                      Cannot be earlier than 07/17/2010.
                     </Tooltip>
                   }
                 >
                   <Form.Control
                     type="date"
                     name="purchaseDate"
-                    value={this.state.purchaseDate}
+                    value={purchaseDate}
                     onChange={this.inputHandler}
                     required
                     min="2010-07-17"
@@ -95,17 +88,17 @@ class InvestForm extends Component {
                   placement="bottom"
                   overlay={
                     <Tooltip id="bottom">
-                      Cannot be the same as or earlier than the Start Date.
+                      Cannot be the same as or earlier than the Purchase Date.
                     </Tooltip>
                   }
                 >
                   <Form.Control
                     type="date"
                     name="saleDate"
-                    value={this.state.saleDate}
+                    value={saleDate}
                     onChange={this.inputHandler}
                     required
-                    min={this.state.purchaseDate}
+                    min={getNextDay()}
                   />
                 </OverlayTrigger>
               </Form.Group>
@@ -118,10 +111,10 @@ class InvestForm extends Component {
                 <Form.Control
                   type="number"
                   name="purchaseQuant"
-                  value={this.state.purchaseQuant}
+                  value={purchaseQuant}
                   onChange={this.inputHandler}
                   required
-                  min={this.state.saleQuant}
+                  min={saleQuant}
                   max="21000000"
                 />
               </Form.Group>
@@ -132,7 +125,7 @@ class InvestForm extends Component {
                 <Form.Control
                   type="number"
                   name="saleQuant"
-                  value={this.state.saleQuant}
+                  value={saleQuant}
                   onChange={this.inputHandler}
                   required
                   min="0"

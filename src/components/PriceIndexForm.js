@@ -99,8 +99,8 @@ class PrinceIndexForm extends Component {
 
   getDateString = (date) => {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
-        .toISOString()
-        .replace(/[T](\S*)$/, '');
+      .toISOString()
+      .replace(/[T](\S*)$/, '');
   }
 
   getPastDate = (date, numDays = 7) => {
