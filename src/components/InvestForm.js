@@ -73,18 +73,17 @@ class InvestForm extends Component {
                   placement="bottom"
                   overlay={
                     <Tooltip>
-                      Use YYYY-MM-DD format. Cannot be earlier than 2010-07-17.
+                      Cannot be earlier than 2010-07-17.
                     </Tooltip>
                   }
                 >
                   <Form.Control
-                    type="text"
-                    placeholder="YYYY-MM-DD"
+                    type="date"
                     name="purchaseDate"
                     value={this.state.purchaseDate}
                     onChange={this.inputHandler}
                     required
-                    pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                    min="2010-07-17"
                   />
                 </OverlayTrigger>
               </Form.Group>
@@ -96,18 +95,17 @@ class InvestForm extends Component {
                   placement="bottom"
                   overlay={
                     <Tooltip id="bottom">
-                      Use YYYY-MM-DD format. Cannot be the same as or earlier than the Start Date.
+                      Cannot be the same as or earlier than the Start Date.
                     </Tooltip>
                   }
                 >
                   <Form.Control
-                    type="text"
-                    placeholder="YYYY-MM-DD"
+                    type="date"
                     name="saleDate"
                     value={this.state.saleDate}
                     onChange={this.inputHandler}
                     required
-                    pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                    min={this.state.purchaseDate}
                   />
                 </OverlayTrigger>
               </Form.Group>
@@ -118,14 +116,13 @@ class InvestForm extends Component {
               <Form.Group>
                 <Form.Label>Purchase Quantity</Form.Label>
                 <Form.Control
-                  // id="pQ"
-                  type="text"
+                  type="number"
                   name="purchaseQuant"
                   value={this.state.purchaseQuant}
                   onChange={this.inputHandler}
                   required
-                  pattern="[1-21000000]"
-                  // min={this.state.saleQuant}
+                  min={this.state.saleQuant}
+                  max="21000000"
                 />
               </Form.Group>
             </Col>
@@ -133,12 +130,13 @@ class InvestForm extends Component {
               <Form.Group>
                 <Form.Label>Sale Quantity</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="number"
                   name="saleQuant"
                   value={this.state.saleQuant}
                   onChange={this.inputHandler}
                   required
-                  pattern="[1-21000000]"
+                  min="0"
+                  max="21000000"
                 />
               </Form.Group>
             </Col>
