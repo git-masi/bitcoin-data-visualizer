@@ -21,8 +21,8 @@ class InvestForm extends Component {
 
   // there is a bug when a user hits enter with the submit button focused
   formSubmitHandler = (e) => {
-    const form = e.currentTarget;
     if (e) {
+      const form = e.currentTarget;
       e.preventDefault()
       e.stopPropagation();
       if (!form.checkValidity()) return;

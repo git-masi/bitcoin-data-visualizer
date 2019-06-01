@@ -60,23 +60,12 @@ class PrinceIndexForm extends Component {
   }
 
   formSubmitHandler = (e) => {
+    
     if (e) {
-      e.preventDefault()
-
-      const { startDate, endDate } = this.state;
       const form = e.currentTarget;
-
-      function earliestDate(date) {
-        return Number(date.replace(/-/g, '')) >= 20100717;
-      }
-
-      function startBeforeEnd(d1, d2) {
-        return Number(d1.replace(/-/g, '')) < Number(d2.replace(/-/g, ''))
-      }
-      
+      e.preventDefault()
+      e.stopPropagation();
       if (!form.checkValidity()) return;
-      if (!earliestDate(startDate)) return;
-      if (!startBeforeEnd(startDate, endDate)) return;
     }
     
     this.setState({validated: true});
@@ -124,7 +113,17 @@ class PrinceIndexForm extends Component {
   }
 
   render() {
-    const { validated } = this.state
+    const { validated, startDate, endDate } = this.state
+
+    const getNextDay = () => {
+      if (startDate === '') return;
+      const parse = Date.parse(startDate);
+      const d1 = new Date(parse);
+      const offsetDate = new Date(parse + (d1.getTimezoneOffset() * 60000 ));
+      const tomorrow = new Date(offsetDate.setDate(offsetDate.getDate() + 1));
+      const dateString = tomorrow.toISOString().replace(/[T](\S*)$/, '');
+      return dateString;
+    }
 
     return (
       <Fragment>
@@ -156,18 +155,17 @@ class PrinceIndexForm extends Component {
                       placement="bottom"
                       overlay={
                         <Tooltip>
-                          Use YYYY-MM-DD format. Cannot be earlier than 2010-07-17.
+                          Cannot be earlier than 07/17/2010.
                         </Tooltip>
                       }
                     >
                       <Form.Control
-                        type="text"
-                        placeholder="YYYY-MM-DD"
+                        type="date"
                         name="startDate"
-                        value={this.state.startDate}
+                        value={startDate}
                         onChange={this.inputHandler}
                         required
-                        pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                        min="2010-07-17"
                       />
                     </OverlayTrigger>
                   </Form.Group>
@@ -179,18 +177,17 @@ class PrinceIndexForm extends Component {
                       placement="bottom"
                       overlay={
                         <Tooltip>
-                          Use YYYY-MM-DD format. Cannot be the same as or earlier than the Start Date.
+                          Cannot be the same as or earlier than the Start Date.
                         </Tooltip>
                       }
                     >
                       <Form.Control
-                        type="text"
-                        placeholder="YYYY-MM-DD"
+                        type="date"
                         name="endDate"
-                        value={this.state.endDate}
+                        value={endDate}
                         onChange={this.inputHandler}
                         required
-                        pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                        min={getNextDay()}
                       />
                     </OverlayTrigger>
                   </Form.Group>
