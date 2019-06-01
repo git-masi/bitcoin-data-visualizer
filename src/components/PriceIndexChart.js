@@ -47,7 +47,7 @@ class PriceIndexChart extends Component {
 
   render() {
     return (
-      <Card>
+      <Card className="mt-2">
         <Card.Header>Historical Bitcoin Price Data</Card.Header>
         <Card.Body style={{position: 'relative'}}>  
             <Line 
