@@ -42,8 +42,9 @@ class InvestForm extends Component {
       if (!form.checkValidity()) return;
       if (!earliestDate(purchaseDate)) return;
       if (!startBeforeEnd(purchaseDate, saleDate)) return;
-      if (purchaseQHigherThanSaleQ(purchaseQuant, saleQuant)) return;
+      if (!purchaseQHigherThanSaleQ(purchaseQuant, saleQuant)) return;
     }
+    
     this.setState({validated: true});
 
     const stateObj = {
@@ -87,19 +88,6 @@ class InvestForm extends Component {
                   />
                 </OverlayTrigger>
               </Form.Group>
-              <Form.Group>
-                <Form.Label>Purchase Quantity</Form.Label>
-                <Form.Control
-                  id="pQ"
-                  type="text"
-                  name="purchaseQuant"
-                  value={this.state.purchaseQuant}
-                  onChange={this.inputHandler}
-                  required
-                  pattern="[1-21000000]"
-                  min={this.state.saleQuant}
-                />
-              </Form.Group>
             </Col>
             <Col>
               <Form.Group>
@@ -123,6 +111,25 @@ class InvestForm extends Component {
                   />
                 </OverlayTrigger>
               </Form.Group>
+            </Col>
+          </Form.Row>
+          <Form.Row>
+            <Col>
+              <Form.Group>
+                <Form.Label>Purchase Quantity</Form.Label>
+                <Form.Control
+                  // id="pQ"
+                  type="text"
+                  name="purchaseQuant"
+                  value={this.state.purchaseQuant}
+                  onChange={this.inputHandler}
+                  required
+                  pattern="[1-21000000]"
+                  // min={this.state.saleQuant}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
               <Form.Group>
                 <Form.Label>Sale Quantity</Form.Label>
                 <Form.Control
