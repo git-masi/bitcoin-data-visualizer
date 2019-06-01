@@ -3,6 +3,8 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
   
 class PrinceIndexForm extends Component {
   state = {
@@ -16,8 +18,19 @@ class PrinceIndexForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  //doesn't cause chart to re-render, possibly because only currency changes so the HOC doesn't pass it along
   currencyChangeHandler = (e) => {
-    this.setState({[e.target.name]: e.target.value}, () => this.formSubmitHandler());
+    this.setState({[e.target.name]: e.target.value}, () => {
+      this.setState({validated: true});
+
+      const APIReqObj = {
+        currency: this.state.currency,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+      }
+  
+      this.props.formSubmitHandler(APIReqObj);
+    });
   }
 
   fastActionHandler = (e) => {
@@ -65,12 +78,15 @@ class PrinceIndexForm extends Component {
       if (!earliestDate(startDate)) return;
       if (!startBeforeEnd(startDate, endDate)) return;
     }
+    
+    this.setState({validated: true});
 
     const APIReqObj = {
       currency: this.state.currency,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
     }
+
     this.props.formSubmitHandler(APIReqObj);
   }
 
@@ -136,30 +152,47 @@ class PrinceIndexForm extends Component {
                 <Col>
                   <Form.Group>
                     <Form.Label>Start Date</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="YYYY-MM-DD"
-                      name="startDate"
-                      value={this.state.startDate}
-                      onChange={this.inputHandler}
-                      required
-                      pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
-                    />
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={
+                        <Tooltip id="bottom">
+                          Use YYYY-MM-DD format. Cannot be earlier than 2010-07-17.
+                        </Tooltip>
+                      }
+                    >
+                      <Form.Control
+                        type="text"
+                        placeholder="YYYY-MM-DD"
+                        name="startDate"
+                        value={this.state.startDate}
+                        onChange={this.inputHandler}
+                        required
+                        pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                      />
+                    </OverlayTrigger>
                   </Form.Group>
                 </Col>
                 <Col>
                   <Form.Group>
                     <Form.Label>End Date</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="YYYY-MM-DD"
-                      name="endDate"
-                      value={this.state.endDate}
-                      onChange={this.inputHandler}
-                      required
-                      pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
-                      title="Year, month, day each separated by -"
-                    />
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={
+                        <Tooltip id="bottom">
+                          Use YYYY-MM-DD format. Cannot be the same as or earlier than the Start Date.
+                        </Tooltip>
+                      }
+                    >
+                      <Form.Control
+                        type="text"
+                        placeholder="YYYY-MM-DD"
+                        name="endDate"
+                        value={this.state.endDate}
+                        onChange={this.inputHandler}
+                        required
+                        pattern="(20[1-9][0-9])-((1[1|2])|(0[1-9]))-((0[1-9])|([1-2][0-9])|(3[0-1]))"
+                      />
+                    </OverlayTrigger>
                   </Form.Group>
                 </Col>
               </Form.Row>
