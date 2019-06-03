@@ -53,6 +53,13 @@ class InvestForm extends Component {
       return dateString;
     }
 
+    const getYesterday = () => {
+      const date = new Date();
+      const yesterday = new Date(date.setDate(date.getDate() - 1));
+      const dateString = yesterday.toISOString().replace(/[T](\S*)$/, '');
+      return dateString;
+    }
+
     return (
       <Card border="light" className="mt-3">
       <Card.Header>Date Range</Card.Header>
@@ -99,6 +106,7 @@ class InvestForm extends Component {
                     onChange={this.inputHandler}
                     required
                     min={getNextDay()}
+                    max={getYesterday()}
                   />
                 </OverlayTrigger>
               </Form.Group>
