@@ -29,35 +29,30 @@ class Invest extends Component {
       return data;
     }
 
-    getBitcoinPrice()
-      .then(data => data.bpi.USD.rate_float)
-      .then(rate => this.setState({curPrice: rate}))
-
     const getPriceIndexData = async (date) => {
       const response = await fetch(`https://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}&start=${date}&end=${date}`);
       let data = await response.json();
       return data;
     }
 
-    getPriceIndexData(formObj.purchaseDate)
+    getBitcoinPrice()
+      .then(data => data.bpi.USD.rate_float)
+      .then(rate => this.setState({curPrice: rate}))
+      .then(() => getPriceIndexData(formObj.purchaseDate))
       .then(d => d.bpi)
       .then(p => this.setState({purchasePrice: Object.values(p)[0]}))
-      .catch(err => console.log(err))
-
-    getPriceIndexData(formObj.saleDate)
+      .then(() => getPriceIndexData(formObj.saleDate))
       .then(d => d.bpi)
-      .then(p => this.setState({salePrice: Object.values(p)[0]}, () => this.getStats(formObj)))
+      .then(p => this.setState({salePrice: Object.values(p)[0]}))
+      .then(() => this.setState({purchaseQuant: Number(formObj.purchaseQuant), saleQuant: Number(formObj.saleQuant)}))
+      .then(() => {
+        const roi = finance.ROI(this.state.purchasePrice, this.state.salePrice);
+        this.setState({ROI: roi});
+      })
       .catch(err => console.log(err))
   }
 
-  getStats = (obj) => {
-    this.setState({purchaseQuant: Number(obj.purchaseQuant), saleQuant: Number(obj.saleQuant)}, () => this.getROI())
-  }
 
-  getROI = () => {
-    const roi = finance.ROI(this.state.purchasePrice, this.state.salePrice);
-    this.setState({ROI: roi});
-  }
 
   render() {
     const { curPrice, salePrice, purchasePrice, saleQuant, purchaseQuant, ROI } = this.state;
