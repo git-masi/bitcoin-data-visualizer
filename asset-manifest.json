@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/git-masi/bitcoin-data-visualizer/static/css/main.5cf865a4.chunk.css",
+    "main.js": "/git-masi/bitcoin-data-visualizer/static/js/main.346e4399.chunk.js",
+    "main.js.map": "/git-masi/bitcoin-data-visualizer/static/js/main.346e4399.chunk.js.map",
+    "runtime~main.js": "/git-masi/bitcoin-data-visualizer/static/js/runtime~main.e30ac06d.js",
+    "runtime~main.js.map": "/git-masi/bitcoin-data-visualizer/static/js/runtime~main.e30ac06d.js.map",
+    "static/js/2.162671af.chunk.js": "/git-masi/bitcoin-data-visualizer/static/js/2.162671af.chunk.js",
+    "static/js/2.162671af.chunk.js.map": "/git-masi/bitcoin-data-visualizer/static/js/2.162671af.chunk.js.map",
+    "index.html": "/git-masi/bitcoin-data-visualizer/index.html",
+    "precache-manifest.c54a39052c2916e5a2318605af293e3b.js": "/git-masi/bitcoin-data-visualizer/precache-manifest.c54a39052c2916e5a2318605af293e3b.js",
+    "service-worker.js": "/git-masi/bitcoin-data-visualizer/service-worker.js",
+    "static/css/main.5cf865a4.chunk.css.map": "/git-masi/bitcoin-data-visualizer/static/css/main.5cf865a4.chunk.css.map",
+    "static/media/bitcoin-logo.svg": "/git-masi/bitcoin-data-visualizer/static/media/bitcoin-logo.13ddc510.svg",
+    "static/media/index.css": "/git-masi/bitcoin-data-visualizer/static/media/bitcoin-viz-bg-protruding-squares.234d97a1.svg",
+    "static/media/Home.module.css": "/git-masi/bitcoin-data-visualizer/static/media/coin.59c7872c.svg"
+  }
+}
