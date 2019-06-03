@@ -53,9 +53,7 @@ class Invest extends Component {
   }
 
   getStats = (obj) => {
-    // console.log(obj)
-    this.getROI(obj.saleQuant)
-    this.setState({purchaseQuant: Number(obj.purchaseQuant), saleQuant: Number(obj.saleQuant)})
+    this.setState({purchaseQuant: Number(obj.purchaseQuant), saleQuant: Number(obj.saleQuant)}, () => this.getROI(obj.saleQuant))
   }
 
   getROI = () => {
