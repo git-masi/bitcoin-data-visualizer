@@ -10,18 +10,21 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
   
 class Home extends Component {
   state = {
     curBitcoinRateUSD: null,
     rateChange: null,
-    dataLoaded: false
+    articles: [],
+    dataLoaded: false,
   }
 
   componentDidMount() {
     const current = 'https://api.coindesk.com/v1/bpi/currentprice.json';
     const yesterday = 'https://api.coindesk.com/v1/bpi/historical/close.json?for=yesterday';
+    const newsURL = 'https://newsapi.org/v2/everything?q=bitcoin&sortBy=relevancy&pageSize=5&apiKey=8473fd369fa841c59b8985cbeb00314c';
 
     async function getRateChange(curRate) {
       const prevRate = await getBitcoinRate(yesterday).then(data => Object.values(data.bpi)[0]);
@@ -30,6 +33,12 @@ class Home extends Component {
 
     async function getBitcoinRate(req) {
       const response = await fetch(req);
+      let data = await response.json();
+      return data;
+    }
+
+    async function getNews(url) {
+      const response = await fetch(url);
       let data = await response.json();
       return data;
     }
@@ -43,7 +52,7 @@ class Home extends Component {
       .then(rate => getRateChange(rate))
       .then(change => {
         const percentChange = (1 - change) * 100
-        this.setState({rateChange: percentChange.toFixed(4), dataLoaded: true})
+        this.setState({rateChange: percentChange.toFixed(4)})
       })
       .catch(err => console.log(err));
 
@@ -56,15 +65,40 @@ class Home extends Component {
 
     // getImage()
     //   .then(data => console.log(data.url));
-  }
 
-  componentWillUnmount() {
-    
+    getNews(newsURL)
+      .then(data => data.articles)
+      .then(arr => {
+        const articles = arr.map(a => ({
+          title: a.title,
+          description: a.description,
+          source: a.source.name,
+          url: a.url
+        }));
+        this.setState({articles: articles, dataLoaded: true});
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
-    const { curBitcoinRateUSD, dataLoaded, rateChange } = this.state;
+    const { curBitcoinRateUSD, dataLoaded, rateChange, articles } = this.state;
     const rateChangeBadge = <Badge variant={rateChange > 0 ? 'success' : 'danger'}>{rateChange}</Badge>;
+    const urlSearchWords = ['news', 'bitcoin', 'cryptocurrency', 'code', 'finance'];
+
+    const carouselItems = articles.map((a, i) => (
+      <Carousel.Item key={i}>
+        <img
+          className="d-block w-100"
+          src={`https://source.unsplash.com/1600x900/?${urlSearchWords[i]}`}
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>{a.title}</h3>
+          <p>{a.description}</p>
+          <p>Read more at <Link to={a.url}>{a.source}</Link></p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    ))
 
     const display = dataLoaded ?
       <Container className="mb-4">
@@ -84,7 +118,7 @@ class Home extends Component {
           </Container>
         </Jumbotron>
         <Row>
-          <Col md={4}>
+          <Col lg={4}>
             <Card>
               <Card.Body>
                 <Card.Title>Investment Tools</Card.Title>
@@ -108,43 +142,9 @@ class Home extends Component {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={8}>
+          <Col lg={8}>
             <Carousel>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://source.unsplash.com/1600x900/?news"
-                  alt="First slide"
-                />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://source.unsplash.com/1600x900/?tech"
-                  alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                  <h3>Second slide label</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="https://source.unsplash.com/1600x900/?bitcoin"
-                  alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                  <h3>Third slide label</h3>
-                  <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+              {carouselItems}
             </Carousel>
           </Col>
         </Row>
