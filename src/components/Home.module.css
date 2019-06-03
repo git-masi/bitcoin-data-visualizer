@@ -18,3 +18,7 @@ h1 {
   font-size: 1rem;
   color: rgba(0, 0, 0, .4)
 }
+
+:global(.carousel-caption) {
+  background: rgba(0, 0, 0, .5);
+}

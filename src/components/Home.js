@@ -102,7 +102,7 @@ class Home extends Component {
 
     const display = dataLoaded ?
       <Container className="mb-4">
-        <Jumbotron fluid className={`mt-4 ${styles.jumbotron}`}>
+        <Jumbotron fluid className={`mt-3 mb-0 ${styles.jumbotron}`}>
           <Container>
             <Row className="justify-content-md-center">
               <Col md="auto" className="d-flex justify-content-center">
@@ -118,7 +118,7 @@ class Home extends Component {
           </Container>
         </Jumbotron>
         <Row>
-          <Col lg={4}>
+          <Col lg={4} className="mt-3">
             <Card>
               <Card.Body>
                 <Card.Title>Investment Tools</Card.Title>
@@ -130,7 +130,7 @@ class Home extends Component {
                 </LinkContainer>
               </Card.Body>
             </Card>
-            <Card className="mt-4">
+            <Card className="mt-3">
               <Card.Body>
                 <Card.Title>Historical Price Info</Card.Title>
                 <Card.Text>
@@ -142,7 +142,7 @@ class Home extends Component {
               </Card.Body>
             </Card>
           </Col>
-          <Col lg={8}>
+          <Col lg={8} className="mt-3">
             <Carousel>
               {carouselItems}
             </Carousel>
@@ -150,7 +150,7 @@ class Home extends Component {
         </Row>
       </Container> :
       <Container>
-        <Row className="justify-content-center mt-5">
+        <Row className="justify-content-center mt-3">
           <Col xs="auto">
             <StyledSpinner />
           </Col>
