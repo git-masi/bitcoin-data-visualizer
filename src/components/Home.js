@@ -10,7 +10,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
   
 class Home extends Component {
@@ -56,16 +55,6 @@ class Home extends Component {
       })
       .catch(err => console.log(err));
 
-    // get images for news async, may or may not need depending on newsAPI
-    // async function getImage(keyword = 'news') {
-    //   const response = await fetch(`https://source.unsplash.com/1600x900/?${keyword}`)
-    //   let data = await response;
-    //   return data;
-    // }
-
-    // getImage()
-    //   .then(data => console.log(data.url));
-
     getNews(newsURL)
       .then(data => data.articles)
       .then(arr => {
@@ -95,7 +84,7 @@ class Home extends Component {
         <Carousel.Caption>
           <h3>{a.title}</h3>
           <p>{a.description}</p>
-          <p>Read more at <Link to={a.url}>{a.source}</Link></p>
+          <p>Read more at <a href={a.url} target="_blank" rel="noopener noreferrer">{a.source}</a></p>
         </Carousel.Caption>
       </Carousel.Item>
     ))
