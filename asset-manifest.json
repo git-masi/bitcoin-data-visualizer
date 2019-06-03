@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/git-masi/bitcoin-data-visualizer/static/css/main.5cf865a4.chunk.css",
-    "main.js": "/git-masi/bitcoin-data-visualizer/static/js/main.346e4399.chunk.js",
-    "main.js.map": "/git-masi/bitcoin-data-visualizer/static/js/main.346e4399.chunk.js.map",
-    "runtime~main.js": "/git-masi/bitcoin-data-visualizer/static/js/runtime~main.e30ac06d.js",
-    "runtime~main.js.map": "/git-masi/bitcoin-data-visualizer/static/js/runtime~main.e30ac06d.js.map",
-    "static/js/2.162671af.chunk.js": "/git-masi/bitcoin-data-visualizer/static/js/2.162671af.chunk.js",
-    "static/js/2.162671af.chunk.js.map": "/git-masi/bitcoin-data-visualizer/static/js/2.162671af.chunk.js.map",
-    "index.html": "/git-masi/bitcoin-data-visualizer/index.html",
-    "precache-manifest.c54a39052c2916e5a2318605af293e3b.js": "/git-masi/bitcoin-data-visualizer/precache-manifest.c54a39052c2916e5a2318605af293e3b.js",
-    "service-worker.js": "/git-masi/bitcoin-data-visualizer/service-worker.js",
-    "static/css/main.5cf865a4.chunk.css.map": "/git-masi/bitcoin-data-visualizer/static/css/main.5cf865a4.chunk.css.map",
-    "static/media/bitcoin-logo.svg": "/git-masi/bitcoin-data-visualizer/static/media/bitcoin-logo.13ddc510.svg",
-    "static/media/index.css": "/git-masi/bitcoin-data-visualizer/static/media/bitcoin-viz-bg-protruding-squares.234d97a1.svg",
-    "static/media/Home.module.css": "/git-masi/bitcoin-data-visualizer/static/media/coin.59c7872c.svg"
+    "main.css": "/bitcoin-data-visualizer/static/css/main.6ab62525.chunk.css",
+    "main.js": "/bitcoin-data-visualizer/static/js/main.346e4399.chunk.js",
+    "main.js.map": "/bitcoin-data-visualizer/static/js/main.346e4399.chunk.js.map",
+    "runtime~main.js": "/bitcoin-data-visualizer/static/js/runtime~main.759ecffb.js",
+    "runtime~main.js.map": "/bitcoin-data-visualizer/static/js/runtime~main.759ecffb.js.map",
+    "static/js/2.f002e5a7.chunk.js": "/bitcoin-data-visualizer/static/js/2.f002e5a7.chunk.js",
+    "static/js/2.f002e5a7.chunk.js.map": "/bitcoin-data-visualizer/static/js/2.f002e5a7.chunk.js.map",
+    "index.html": "/bitcoin-data-visualizer/index.html",
+    "precache-manifest.0977a8477827ad01daedbd77adbd2912.js": "/bitcoin-data-visualizer/precache-manifest.0977a8477827ad01daedbd77adbd2912.js",
+    "service-worker.js": "/bitcoin-data-visualizer/service-worker.js",
+    "static/css/main.6ab62525.chunk.css.map": "/bitcoin-data-visualizer/static/css/main.6ab62525.chunk.css.map",
+    "static/media/bitcoin-logo.svg": "/bitcoin-data-visualizer/static/media/bitcoin-logo.13ddc510.svg",
+    "static/media/index.css": "/bitcoin-data-visualizer/static/media/bitcoin-viz-bg-protruding-squares.234d97a1.svg",
+    "static/media/Home.module.css": "/bitcoin-data-visualizer/static/media/coin.59c7872c.svg"
   }
 }
