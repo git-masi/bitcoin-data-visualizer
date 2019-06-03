@@ -12,7 +12,7 @@ const Routes = props => {
     <Route render={({ location }) => (
       <TransitionGroup>
         <CSSTransition
-          key={location.key}
+          key={location.pathname}
           classNames="page"
           timeout={1000}
         >
