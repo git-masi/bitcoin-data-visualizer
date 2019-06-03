@@ -41,7 +41,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://github.com/git-masi/bitcoin-data-visualizer",
+  "homepage": "https://git-masi.github.io/bitcoin-data-visualizer",
   "devDependencies": {
     "gh-pages": "^2.0.1"
   }
