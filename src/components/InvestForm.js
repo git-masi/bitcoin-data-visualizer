@@ -19,25 +19,24 @@ class InvestForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
-  // there is a bug when a user hits enter with the submit button focused
   formSubmitHandler = (e) => {
-    if (e) {
-      const form = e.currentTarget;
-      e.preventDefault()
-      e.stopPropagation();
-      if (!form.checkValidity()) return;
-    }
+    if (!e) return;
+    e.preventDefault()
+
+    const form = e.currentTarget;
     
     this.setState({validated: true});
 
-    const stateObj = {
-      purchaseDate: this.state.purchaseDate,
-      saleDate: this.state.saleDate,
-      purchaseQuant: this.state.purchaseQuant,
-      saleQuant: this.state.saleQuant,
+    if(form.checkValidity()) {
+      const stateObj = {
+        purchaseDate: this.state.purchaseDate,
+        saleDate: this.state.saleDate,
+        purchaseQuant: this.state.purchaseQuant,
+        saleQuant: this.state.saleQuant,
+      }
+  
+      this.props.formSubmitHandler(stateObj);
     }
-
-    this.props.formSubmitHandler(stateObj);
   }
 
   render() {
@@ -95,7 +94,7 @@ class InvestForm extends Component {
                   placement="bottom"
                   overlay={
                     <Tooltip id="bottom">
-                      Cannot be the same as or earlier than the Purchase Date.
+                      Must be between Purchase Date and {getYesterday()}. 
                     </Tooltip>
                   }
                 >
