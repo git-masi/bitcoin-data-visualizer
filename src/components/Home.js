@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import { LinkContainer } from 'react-router-bootstrap';
 import styles from './Home.module.css';
   
 class Home extends Component {
@@ -70,11 +71,11 @@ class Home extends Component {
         <Jumbotron fluid className={`mt-4 ${styles.jumbotron}`}>
           <Container>
             <Row className="justify-content-md-center">
-              <Col md="auto">
+              <Col md="auto" className="d-flex justify-content-center">
                 <div className={styles.coin}></div>
               </Col>
-              <Col md="auto" className="my-auto">
-                <h1>Bitcoin Price
+              <Col md="auto" className="my-auto d-flex justify-content-center">
+                <h1 style={{textAlign: 'center'}}>Bitcoin Price
                   <span className={styles.tickerSymbol}> (BTC)</span>
                   <span> ${curBitcoinRateUSD}</span> {rateChangeBadge}
                 </h1>
@@ -88,20 +89,22 @@ class Home extends Component {
               <Card.Body>
                 <Card.Title>Investment Tools</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  The invetment tools give you an idea of return on investment over different time periods, as well as useful information about price volatility.
                 </Card.Text>
-                <Button variant="success">INVEST</Button>
+                <LinkContainer exact to="/invest">
+                  <Button variant="success">INVEST</Button>
+                </LinkContainer>
               </Card.Body>
             </Card>
             <Card className="mt-4">
               <Card.Body>
                 <Card.Title>Historical Price Info</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  The historical price index shows you the value of bitcoin over time.
                 </Card.Text>
-                <Button variant="info">PRICE INDEX</Button>
+                <LinkContainer exact to="price-index">
+                  <Button variant="info">PRICE INDEX</Button>
+                </LinkContainer>
               </Card.Body>
             </Card>
           </Col>
