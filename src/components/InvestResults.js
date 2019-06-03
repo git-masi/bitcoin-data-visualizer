@@ -54,30 +54,28 @@ class InvestResults extends Component {
         </Col>
         <Col lg={4} className="mb-3">
           <Card className={`mt-3 justify-content-center align-items-center ${styles.fullHeight}`}>
-            {/* <Card.Body className="flex-grow-1"> */}
-              <Doughnut
-                data = {{
-                  datasets: [{
-                      data: [gainOrLoss, totalSale, remValue],
-                      backgroundColor: [`${gainOrLoss >= 0 ? 'rgba(46, 204, 113, .7)' : 'rgba(231, 76, 60, .7)'}`, 'rgba(52, 152, 219, .7)', 'rgba(52, 73, 94, .7)'],
-                  }],
-              
-                  // These labels appear in the legend and in the tooltips when hovering different arcs
-                  labels: [
-                    `${gainOrLoss >= 0 ? 'Gain' : 'Loss'}`,
-                    'Sale',
-                    'Remaining Value',
-                  ]
-                }}
-                options = {{
-                  responsive: true,
-                  legend: {
-                    display: true,
-                    position: 'top',
-                  }
-                }}
-              />
-            {/* </Card.Body> */}
+            <Doughnut
+              data = {{
+                datasets: [{
+                    data: [gainOrLoss, totalSale, remValue],
+                    backgroundColor: [`${gainOrLoss >= 0 ? 'rgba(46, 204, 113, .7)' : 'rgba(231, 76, 60, .7)'}`, 'rgba(52, 152, 219, .7)', 'rgba(52, 73, 94, .7)'],
+                }],
+            
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                  `${gainOrLoss >= 0 ? 'Gain' : 'Loss'}`,
+                  'Sale',
+                  'Remaining Value',
+                ]
+              }}
+              options = {{
+                responsive: true,
+                legend: {
+                  display: true,
+                  position: 'top',
+                }
+              }}
+            />
           </Card>
         </Col>
       </Fragment>

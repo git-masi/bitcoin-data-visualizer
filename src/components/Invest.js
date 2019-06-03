@@ -3,8 +3,6 @@ import Navigation from './Navigation';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import Card from 'react-bootstrap/Card';
-// import Table from 'react-bootstrap/Table';
 import InvestForm from './InvestForm';
 import InvestResults from './InvestResults';
 import VolatilityIndex from './VolatilityIndex';
@@ -60,19 +58,6 @@ class Invest extends Component {
     const roi = finance.ROI(this.state.purchasePrice, this.state.salePrice);
     this.setState({ROI: roi});
   }
-
-  // for whatever reason both prevProps and prevState need to be included as parameters
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log(prevState.ROI, this.state.ROI)
-  //   if (this.state.ROI === prevState.ROI) {
-  //     const roi = finance.ROI(this.state.purchasePrice, this.state.salePrice);
-  //     console.log(roi);
-  //     this.setState({ROI: roi});
-
-  //     // console.log('inside the roi');
-  //     // this.getROI();
-  //   }
-  // }
 
   render() {
     const { curPrice, salePrice, purchasePrice, saleQuant, purchaseQuant, ROI } = this.state;
