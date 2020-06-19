@@ -25,7 +25,7 @@ class Home extends Component {
     const yesterday =
       'https://api.coindesk.com/v1/bpi/historical/close.json?for=yesterday';
     const newsURL =
-      'https://api.cognitive.microsoft.com/bing/v7.0/news/search?q="bitcoin"';
+      'https://bitviz-bitcoin-news.cognitiveservices.azure.com/bing/v7.0/news/search?q="bitcoin"';
 
     async function getRateChange(curRate) {
       const prevRate = await getBitcoinRate(yesterday).then(
@@ -44,7 +44,7 @@ class Home extends Component {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Ocp-Apim-Subscription-Key': '7b9a8503d3ee450d99a80ef2f5e6f3a4',
+          'Ocp-Apim-Subscription-Key': 'de62115a7b5b46b49838c4508fbf2a89',
         },
       });
       let data = await response.json();
