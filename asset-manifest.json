@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/bitcoin-data-visualizer/static/css/main.e9063822.chunk.css",
-    "main.js": "/bitcoin-data-visualizer/static/js/main.3867ed0c.chunk.js",
-    "main.js.map": "/bitcoin-data-visualizer/static/js/main.3867ed0c.chunk.js.map",
+    "main.js": "/bitcoin-data-visualizer/static/js/main.30e558e6.chunk.js",
+    "main.js.map": "/bitcoin-data-visualizer/static/js/main.30e558e6.chunk.js.map",
     "runtime-main.js": "/bitcoin-data-visualizer/static/js/runtime-main.89cf310b.js",
     "runtime-main.js.map": "/bitcoin-data-visualizer/static/js/runtime-main.89cf310b.js.map",
     "static/js/2.1acb883b.chunk.js": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js",
     "static/js/2.1acb883b.chunk.js.map": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js.map",
     "index.html": "/bitcoin-data-visualizer/index.html",
-    "precache-manifest.1cc3b37b85d218e13680d5d7aa5afa2b.js": "/bitcoin-data-visualizer/precache-manifest.1cc3b37b85d218e13680d5d7aa5afa2b.js",
+    "precache-manifest.0e09c39c55b77f7ec87dd6a6d74b0e64.js": "/bitcoin-data-visualizer/precache-manifest.0e09c39c55b77f7ec87dd6a6d74b0e64.js",
     "service-worker.js": "/bitcoin-data-visualizer/service-worker.js",
     "static/css/main.e9063822.chunk.css.map": "/bitcoin-data-visualizer/static/css/main.e9063822.chunk.css.map",
     "static/js/2.1acb883b.chunk.js.LICENSE.txt": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js.LICENSE.txt",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.89cf310b.js",
     "static/js/2.1acb883b.chunk.js",
     "static/css/main.e9063822.chunk.css",
-    "static/js/main.3867ed0c.chunk.js"
+    "static/js/main.30e558e6.chunk.js"
   ]
 }
