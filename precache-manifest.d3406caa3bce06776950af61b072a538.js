@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "50df5c9cb3524dceb376309ac5e69cf6",
+    "revision": "974e36f9cd7adcd813bdea77a406f361",
     "url": "/bitcoin-data-visualizer/index.html"
   },
   {
-    "revision": "31a39904bf223970819c",
+    "revision": "e8a17d7c8872cf260346",
     "url": "/bitcoin-data-visualizer/static/css/main.e9063822.chunk.css"
   },
   {
-    "revision": "2942d6ea6b223338f113",
-    "url": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js"
+    "revision": "25c94fe44f58309651b2",
+    "url": "/bitcoin-data-visualizer/static/js/2.66ecbb6d.chunk.js"
   },
   {
-    "revision": "9ac955c88fda3798446c6a3d244832b4",
-    "url": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js.LICENSE.txt"
+    "revision": "ebe7f272bdc8a0fdd391e18c95246392",
+    "url": "/bitcoin-data-visualizer/static/js/2.66ecbb6d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "31a39904bf223970819c",
-    "url": "/bitcoin-data-visualizer/static/js/main.30e558e6.chunk.js"
+    "revision": "e8a17d7c8872cf260346",
+    "url": "/bitcoin-data-visualizer/static/js/main.a87f99c2.chunk.js"
   },
   {
     "revision": "c2fa18c24dc88f0a9754",

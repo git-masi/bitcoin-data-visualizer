@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/bitcoin-data-visualizer/static/css/main.e9063822.chunk.css",
-    "main.js": "/bitcoin-data-visualizer/static/js/main.30e558e6.chunk.js",
-    "main.js.map": "/bitcoin-data-visualizer/static/js/main.30e558e6.chunk.js.map",
+    "main.js": "/bitcoin-data-visualizer/static/js/main.a87f99c2.chunk.js",
+    "main.js.map": "/bitcoin-data-visualizer/static/js/main.a87f99c2.chunk.js.map",
     "runtime-main.js": "/bitcoin-data-visualizer/static/js/runtime-main.89cf310b.js",
     "runtime-main.js.map": "/bitcoin-data-visualizer/static/js/runtime-main.89cf310b.js.map",
-    "static/js/2.1acb883b.chunk.js": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js",
-    "static/js/2.1acb883b.chunk.js.map": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js.map",
+    "static/js/2.66ecbb6d.chunk.js": "/bitcoin-data-visualizer/static/js/2.66ecbb6d.chunk.js",
+    "static/js/2.66ecbb6d.chunk.js.map": "/bitcoin-data-visualizer/static/js/2.66ecbb6d.chunk.js.map",
     "index.html": "/bitcoin-data-visualizer/index.html",
-    "precache-manifest.0e09c39c55b77f7ec87dd6a6d74b0e64.js": "/bitcoin-data-visualizer/precache-manifest.0e09c39c55b77f7ec87dd6a6d74b0e64.js",
+    "precache-manifest.d3406caa3bce06776950af61b072a538.js": "/bitcoin-data-visualizer/precache-manifest.d3406caa3bce06776950af61b072a538.js",
     "service-worker.js": "/bitcoin-data-visualizer/service-worker.js",
     "static/css/main.e9063822.chunk.css.map": "/bitcoin-data-visualizer/static/css/main.e9063822.chunk.css.map",
-    "static/js/2.1acb883b.chunk.js.LICENSE.txt": "/bitcoin-data-visualizer/static/js/2.1acb883b.chunk.js.LICENSE.txt",
+    "static/js/2.66ecbb6d.chunk.js.LICENSE.txt": "/bitcoin-data-visualizer/static/js/2.66ecbb6d.chunk.js.LICENSE.txt",
     "static/media/bitcoin-logo.svg": "/bitcoin-data-visualizer/static/media/bitcoin-logo.9ceffd75.svg",
     "static/media/index.css": "/bitcoin-data-visualizer/static/media/bitcoin-viz-bg-protruding-squares.234d97a1.svg",
     "static/media/Home.module.css": "/bitcoin-data-visualizer/static/media/coin.79679b06.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.89cf310b.js",
-    "static/js/2.1acb883b.chunk.js",
+    "static/js/2.66ecbb6d.chunk.js",
     "static/css/main.e9063822.chunk.css",
-    "static/js/main.30e558e6.chunk.js"
+    "static/js/main.a87f99c2.chunk.js"
   ]
 }
