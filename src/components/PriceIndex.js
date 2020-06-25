@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import PriceIndexForm from './PriceIndexForm';
-// import PriceIndexChart from './PriceIndexChart';
 import PriceIndexChart from './PriceIndexChart/PriceIndexChart';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
