@@ -25,7 +25,7 @@ class Home extends Component {
     const yesterday =
       'https://api.coindesk.com/v1/bpi/historical/close.json?for=yesterday';
     const newsURL =
-      'https://bitviz-bitcoin-news.cognitiveservices.azure.com/bing/v7.0/news/search?q="bitcoin"';
+      'https://hn.algolia.com/api/v1/search_by_date?query=bitcoin&tags=story';
 
     async function getRateChange(curRate) {
       const prevRate = await getBitcoinRate(yesterday).then(
@@ -41,12 +41,7 @@ class Home extends Component {
     }
 
     async function getNews(url) {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Ocp-Apim-Subscription-Key': 'de62115a7b5b46b49838c4508fbf2a89',
-        },
-      });
+      const response = await fetch(url);
       let data = await response.json();
       return data;
     }
@@ -65,15 +60,17 @@ class Home extends Component {
       .catch((err) => console.log(err));
 
     getNews(newsURL)
-      .then((data) => data.value)
-      .then((arr) => {
-        const articles = arr.map((article) => ({
-          title: article.name,
-          description: article.description,
-          source: article.provider[0].name,
-          url: article.url,
-        }));
-        this.setState({ articles: articles, dataLoaded: true });
+      .then((data) => {
+        const articles = data.hits
+          .sort((a, b) => b.points - a.points)
+          .slice(0, 5)
+          .map((article) => ({
+            title: article?.title,
+            source: new URL(article?.url).hostname ?? 'unknown',
+            url: article?.url,
+          }));
+        console.log(articles);
+        this.setState({ articles, dataLoaded: true });
       })
       .catch((err) => console.log(err));
   }
@@ -102,7 +99,6 @@ class Home extends Component {
         />
         <Carousel.Caption>
           <h3>{a.title}</h3>
-          <p>{a.description}</p>
           <p>
             Read more at{' '}
             <a href={a.url} target='_blank' rel='noopener noreferrer'>
