@@ -64,11 +64,17 @@ class Home extends Component {
         const articles = data.hits
           .sort((a, b) => b.points - a.points)
           .slice(0, 5)
-          .map((article) => ({
-            title: article?.title,
-            source: new URL(article?.url).hostname ?? 'unknown',
-            url: article?.url,
-          }));
+          .map((article) => {
+            console.log(article);
+            return {
+              title: article?.title,
+              source:
+                typeof article.url === 'string'
+                  ? new URL(article.url).hostname
+                  : 'unknown',
+              url: article?.url,
+            };
+          });
         console.log(articles);
         this.setState({ articles, dataLoaded: true });
       })
